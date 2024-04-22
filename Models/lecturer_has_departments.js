@@ -1,18 +1,19 @@
 const BaseModel = require('./baseModel').BaseModel;
-class Venue extends BaseModel{
-    collectionName = 'venues';
+class LecturerDepartments extends BaseModel{
+    collectionName = 'lecturerDepartments';
     constructor()
     {
         super();
         this.schema = this.mongoose.Schema({
-            venueName: {type: String, unique: true, required: true, maxlength: 50},
+            lecturerID: String,
+            departmentID: String,
             created_at: {type: Date, default: Date.now},
             updated_at: {type: Date, default: Date.now}});
-        this.venueModel = this.mongoose.model(this.collectionName, this.schema);
+        this.lecturerDepartmentModel = this.mongoose.model(this.collectionName, this.schema);
     }
     create(obj)
     {
-        this.venueModel.create(obj).then((created_record)=>{
+        this.lecturerDepartmentModel.create(obj).then((created_record)=>{
             if(!created_record) console.log("Creation failure");
             else console.log("Creation success");
         }).catch(err=>{
@@ -22,7 +23,7 @@ class Venue extends BaseModel{
     }
     read(){
         records = [];
-        this.venueModel.find().each((err, doc)=>{
+        this.lecturerDepartmentModel.find().each((err, doc)=>{
             if (err) console.log(err);
             records.push(doc);
         });
@@ -30,19 +31,19 @@ class Venue extends BaseModel{
     }
     find(obj)
     {
-        return this.venueModel.find(obj);
+        return this.lecturerDepartmentModel.find(obj);
     }
     update(id, obj)
     {
         updated_at = new Date().toISOString();
         obj.updated_at = updated_at;
-        this.venueModel.update({id: id}, obj, (err)=>{
+        this.lecturerDepartmentModel.update({id: id}, obj, (err)=>{
             if (err) console.log(err);});
     }
     delete(id)
     {
-        this.venueModel.delete({id: id}, (err)=>{
+        this.lecturerDepartmentModel.delete({id: id}, (err)=>{
             if (err) console.log(err);});
     }
 }
-exports.venue = new Venue();
+exports.LecturerDepartment = new LecturerDepartments();

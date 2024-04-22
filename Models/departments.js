@@ -1,27 +1,29 @@
-const Db = require('./dbconn').Db;
-class Department extends Db{
+const BaseModel = require('./baseModel').BaseModel;
+class Department extends BaseModel{
     collectionName = 'departments';
     constructor()
     {
         super();
-        this.collection = this.db.collection(this.collectionName);
         this.schema = this.mongoose.Schema({
-            departmentName: String, schoolID: String, created_at: Date, updated_at: Date
+            departmentName: {type: String, unique: true, required: true, maxlength: 50},
+            schoolID: String, created_at: {type: Date, default: Date.now},
+            updated_at: {type: Date, default: Date.now}
         });
         this.departmentModel = this.mongoose.model(this.collectionName, this.schema);
     }
-    create(departmentName, schoolID)
+    create(obj)
     {
-        created_at = new Date().toISOString();
-        updated_at = new Date().toISOString();
-        this.collection.insert({departmentName: departmentName, schoolID:schoolID, created_at: created_at, updated_at: updated_at}, (err)=>{
-            if (err) console.log(err);
-            else console.log("Insert success");
+        this.departmentModel.create(obj).then((created_dept)=>{
+            if(!created_dept) console.log("Creation failure");
+            else console.log("Creation success");
+        }).catch(err=>{
+            console.log(err.message);
+            throw err;
         });
     }
     read(){
         records = [];
-        this.collection.find().each((err, doc)=>{
+        this.departmentModel.find().each((err, doc)=>{
             if (err) console.log(err);
             records.push(doc);
         });
@@ -29,18 +31,19 @@ class Department extends Db{
     }
     find(obj)
     {
-        return this.collection.find(obj);
+        return this.departmentModel.find(obj);
     }
     update(id, obj)
     {
         updated_at = new Date().toISOString();
         obj.updated_at = updated_at;
-        this.collection.update({id: id}, obj, (err)=>{
+        this.departmentModel.update({id: id}, obj, (err)=>{
             if (err) console.log(err);});
     }
     delete(id)
     {
-        this.collection.delete({id: id}, (err)=>{
+        this.departmentModel.delete({id: id}, (err)=>{
             if (err) console.log(err);});
     }
 }
+exports.department = new Department();

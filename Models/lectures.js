@@ -1,27 +1,35 @@
-const Db = require('./dbconn').Db;
-class Lecture extends Db{
+const BaseModel = require('./baseModel').BaseModel;
+class Lecture extends BaseModel{
     collectionName = 'lectures';
     constructor()
     {
-        this.db = super();
-        this.collection = this.db.collection(this.collectionName);
+        super();
         this.schema = this.mongoose.Schema({
-            startTime: Date, endTime: Date, courseID: String, lecturerID: String, departmentID: String, schoolID: String, venueID: String, created_at: Date, updated_at: Date
+            startTime: Date,
+            endTime: Date,
+            courseID: String,
+            lecturerID: String,
+            departmentID: String,
+            schoolID: String,
+            venueID: String,
+            created_at: {type: Date, default: Date.now},
+            updated_at: {type: Date, default: Date.now}
         });
         this.lecturesModel = this.mongoose.model(this.collectionName, this.schema);
     }
-    create(startTime, endTime, lecturerID, courseID, departmentID, schoolID, venueID)
+    create(obj)
     {
-        created_at = new Date().toISOString();
-        updated_at = new Date().toISOString();
-        this.collection.insert({startTime: startTime, endTime: endTime, lecturerID: lecturerID,courseID: courseID, departmentID: departmentID, schoolID: schoolID, venueID: venueID, created_at: created_at, updated_at: updated_at}, (err)=>{
-            if (err) console.log(err);
-            else console.log("Insert success");
+        this.lecturesModel.create(obj).then((created_record)=>{
+            if(!created_record) console.log("Creation failure");
+            else console.log("Creation success");
+        }).catch(err=>{
+            console.log(err.message);
+            throw err;
         });
     }
     read(){
         records = [];
-        this.collection.find().each((err, doc)=>{
+        this.lecturesModel.find().each((err, doc)=>{
             if (err) console.log(err);
             records.push(doc);
         });
@@ -29,18 +37,19 @@ class Lecture extends Db{
     }
     find(obj)
     {
-        return this.collection.find(obj);
+        return this.lecturesModel.find(obj);
     }
     update(id, obj)
     {
         updated_at = new Date().toISOString();
         obj.updated_at = updated_at;
-        this.collection.update({id: id}, obj, (err)=>{
+        this.lecturesModel.update({id: id}, obj, (err)=>{
             if (err) console.log(err);});
     }
     delete(id)
     {
-        this.collection.delete({id: id}, (err)=>{
+        this.lecturesModel.delete({id: id}, (err)=>{
             if (err) console.log(err);});
     }
 }
+exports.lecture = new Lecture();

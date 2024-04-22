@@ -1,25 +1,29 @@
-const Db = require('./dbconn').Db;
-class Lecturer extends Db{
+const BaseModel = require('./baseModel').BaseModel;
+class Lecturer extends BaseModel{
     collectionName = 'lecturers';
     constructor()
     {
-        this.db = super();
-        this.collection = this.db.collection(this.collectionName);
-        this.schema = this.mongoose.Schema({firstName: String, lastName: String, created_at: Date, updated_at: Date});
+        super();
+        this.schema = this.mongoose.Schema({
+            firstName: String,
+            lastName: String,
+            created_at: {type: Date, default: Date.now},
+            updated_at: {type: Date, default: Date.now}});
         this.lecturerModel = this.mongoose.model(this.collectionName, this.schema);
     }
-    create(firstName, lastName)
+    create(obj)
     {
-        created_at = new Date().toISOString();
-        updated_at = new Date().toISOString();
-        this.collection.insert({firstName: firstName, lastName: lastName, created_at: created_at, updated_at: updated_at}, (err)=>{
-            if (err) console.log(err);
-            else console.log("Insert success");
+        this.lecturerModel.create(obj).then((created_record)=>{
+            if(!created_record) console.log("Creation failure");
+            else console.log("Creation success");
+        }).catch(err=>{
+            console.log(err.message);
+            throw err;
         });
     }
     read(){
         records = [];
-        this.collection.find().each((err, doc)=>{
+        this.lecturerModel.find().each((err, doc)=>{
             if (err) console.log(err);
             records.push(doc);
         });
@@ -27,18 +31,19 @@ class Lecturer extends Db{
     }
     find(obj)
     {
-        return this.collection.find(obj);
+        return this.lecturerModel.find(obj);
     }
     update(id, obj)
     {
         updated_at = new Date().toISOString();
         obj.updated_at = updated_at;
-        this.collection.update({id: id}, obj, (err)=>{
+        this.lecturerModel.update({id: id}, obj, (err)=>{
             if (err) console.log(err);});
     }
     delete(id)
     {
-        this.collection.delete({id: id}, (err)=>{
+        this.lecturerModel.delete({id: id}, (err)=>{
             if (err) console.log(err);});
     }
 }
+exports.lecturer = new Lecturer()

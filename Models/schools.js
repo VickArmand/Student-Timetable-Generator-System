@@ -1,25 +1,28 @@
-const Db = require('./dbconn').Db;
-class School extends Db{
+const BaseModel = require('./baseModel').BaseModel;
+class School extends BaseModel{
     collectionName = 'schools';
     constructor()
     {
-        this.db = super();
-        this.collection = this.db.collection(this.collectionName);
-        this.schema = this.mongoose.Schema({schoolName: String, created_at: Date, updated_at: Date});
+        super();
+        this.schema = this.mongoose.Schema({
+            schoolName: {type: String, unique: true, required: true, maxlength: 50},
+            created_at: {type: Date, default: Date.now},
+            updated_at: {type: Date, default: Date.now}});
         this.schoolModel = this.mongoose.model(this.collectionName, this.schema);
     }
-    create(schoolName)
+    create(obj)
     {
-        created_at = new Date().toISOString();
-        updated_at = new Date().toISOString();
-        this.collection.insert({schoolName:schoolName, created_at: created_at, updated_at: updated_at}, (err)=>{
-            if (err) console.log(err);
-            else console.log("Insert success");
+        this.schoolModel.create(obj).then((created_record)=>{
+            if(!created_record) console.log("Creation failure");
+            else console.log("Creation success");
+        }).catch(err=>{
+            console.log(err.message);
+            throw err;
         });
     }
     read(){
         records = [];
-        this.collection.find().each((err, doc)=>{
+        this.schoolModel.find().each((err, doc)=>{
             if (err) console.log(err);
             records.push(doc);
         });
@@ -27,18 +30,19 @@ class School extends Db{
     }
     find(obj)
     {
-        return this.collection.find(obj);
+        return this.schoolModel.find(obj);
     }
     update(id, obj)
     {
         updated_at = new Date().toISOString();
         obj.updated_at = updated_at;
-        this.collection.update({id: id}, obj, (err)=>{
+        this.schoolModel.update({id: id}, obj, (err)=>{
             if (err) console.log(err);});
     }
     delete(id)
     {
-        this.collection.delete({id: id}, (err)=>{
+        this.schoolModel.delete({id: id}, (err)=>{
             if (err) console.log(err);});
     }
 }
+exports.school = new School();

@@ -1,5 +1,5 @@
 const BaseModel = require('./baseModel').BaseModel;
-exports.Course = class Course extends BaseModel{
+class Course extends BaseModel{
     collectionName = 'courses';
     constructor()
     {
@@ -22,21 +22,20 @@ exports.Course = class Course extends BaseModel{
     }
     async read(){
         try{
+            records = [];
             await this.courseModel.find({}).then(
                 (courses)=> {
-                    console.log(courses);
-                    return courses;
+                    records.add(courses);
                 }
             );
+            return records;
         } catch(err) {throw err;}
     }
     async find(obj)
     {
-        try{
-            await this.courseModel.find(obj).then(
-                (course)=> {console.log(course);}
-            );;
-        } catch(err) {throw err;}
+        const record = await this.courseModel.find(obj).then(
+            (course)=> {return course}).catch((err) => {throw err;});
+        return record;
     }
     async update(id, obj)
     {
@@ -61,3 +60,4 @@ exports.Course = class Course extends BaseModel{
         });
     }
 }
+exports.course = new Course();
