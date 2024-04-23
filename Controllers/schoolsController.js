@@ -1,12 +1,11 @@
 const school = require('../Models/schools').school;
 
 class SchoolsController{
-    create(schoolName)
+    create(obj)
     {
-        if (typeof(schoolName) != 'string' || schoolName.length < 2) {
+        if (typeof(obj.schoolName) != 'string' || obj.schoolName.length < 2) {
             throw TypeError('Invalid Name');
         }
-        const obj = {schoolName: schoolName}; 
         school.create(obj);
     }
     update(id, obj)
@@ -19,7 +18,8 @@ class SchoolsController{
     }
     find(obj)
     {
-        school.find(obj);
+        if (obj.length == 0) return school.read();
+        return school.find(obj);
     }
     delete(id)
     {

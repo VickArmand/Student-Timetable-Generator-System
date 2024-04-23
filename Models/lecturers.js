@@ -5,8 +5,8 @@ class Lecturer extends BaseModel{
     {
         super();
         this.schema = this.mongoose.Schema({
-            firstName: String,
-            lastName: String,
+            firstName: {type: String, required: true},
+            lastName: {type: String, required: true},
             created_at: {type: Date, default: Date.now},
             updated_at: {type: Date, default: Date.now}});
         this.lecturerModel = this.mongoose.model(this.collectionName, this.schema);

@@ -1,24 +1,23 @@
 const course = require('../Models/courses').course;
 
 class CoursesController{
-    create(courseName, years, semesters, departmentID, schoolID)
+    create(obj)
     {
-        if (typeof(years) !== 'number' || years < 1){
+        if (typeof(obj.years) !== 'number' || obj.years < 1){
             throw TypeError('Invalid years');
         }
-        else if(typeof(semesters) !== 'number' || semesters < 1){
+        else if(typeof(obj.semesters) !== 'number' || obj.semesters < 1){
             throw TypeError('Invalid semesters');
         }
-        else if (typeof(courseName) != 'string' || courseName.length < 2) {
+        else if (typeof(obj.courseName) != 'string' || obj.courseName.length < 2) {
             throw TypeError('Invalid Course');
         }
-        else if (typeof(departmentID) != 'string' || departmentID.length < 2) {
+        else if (typeof(obj.departmentID) != 'string' || obj.departmentID.length < 2) {
             throw TypeError('Invalid Department');
         }
-        else if (typeof(schoolID) != 'string' || schoolID.length < 2) {
+        else if (typeof(obj.schoolID) != 'string' || obj.schoolID.length < 2) {
             throw TypeError('Invalid School');
         }
-        const obj = {courseName:courseName, years:years,semesters:semesters, departmentID:departmentID, schoolID:schoolID}; 
         course.create(obj);
     }
     update(id, obj)
@@ -29,9 +28,10 @@ class CoursesController{
         else if (obj.length == 0) throw Error("Empty objects not allowed");
         course.update(id, obj);
     }
-    find(obj)
+    async find(obj)
     {
-        return course.find(obj);
+        if (obj.length == 0) return await course.read();
+        return await course.find(obj);
     }
     delete(id)
     {

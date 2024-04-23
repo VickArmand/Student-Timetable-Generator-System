@@ -1,10 +1,20 @@
+const { type } = require('express/lib/response');
+
 const BaseModel = require('./baseModel').BaseModel;
 class Course extends BaseModel{
     collectionName = 'courses';
     constructor()
     {
         super();
-        this.schema = this.mongoose.Schema({name: {type: String, unique: true, required: true, dropDups:true, maxlength: 50}, created_at: {type: Date, default: Date.now}, updated_at: {type: Date, default: Date.now}});
+        this.schema = this.mongoose.Schema({
+            courseName: {type: String, unique: true, required: true, dropDups:true, maxlength: 50},
+            years: {type: Number, required: true},
+            semesters: {type: Number, required: true},
+            departmentID: {type: String, required: true},
+            schoolID: {type: String, required: true},
+            created_at: {type: Date, default: Date.now},
+            updated_at: {type: Date, default: Date.now}
+        });
         this.courseModel = this.mongoose.model(this.collectionName, this.schema);
     }
     async create(obj)

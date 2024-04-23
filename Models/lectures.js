@@ -5,13 +5,13 @@ class Lecture extends BaseModel{
     {
         super();
         this.schema = this.mongoose.Schema({
-            startTime: Date,
-            endTime: Date,
-            courseID: String,
-            lecturerID: String,
-            departmentID: String,
-            schoolID: String,
-            venueID: String,
+            startTime: {type: Date, required: true},
+            endTime: {type: Date, required: true},
+            courseID: {type: String, required: true},
+            lecturerID: {type: String, required: true},
+            departmentID: {type: String, required: true},
+            schoolID: {type: String, required: true},
+            venueID: {type: String, required: true},
             created_at: {type: Date, default: Date.now},
             updated_at: {type: Date, default: Date.now}
         });

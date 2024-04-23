@@ -1,15 +1,14 @@
 const lecturerdepartments = require('../Models/lecturer_has_departments').LecturerDepartment;
 
 class LecturerDepartmentsController{
-    create(lecturerID, departmentID)
+    create(obj)
     {
-        if (typeof(departmentID) != 'string' || departmentID.length < 2) {
+        if (typeof(obj.departmentID) != 'string' || obj.departmentID.length < 2) {
             throw TypeError('Invalid Department');
         }
-        else if (typeof(lecturerID) != 'string' || lecturerID.length < 2) {
+        else if (typeof(obj.lecturerID) != 'string' || obj.lecturerID.length < 2) {
             throw TypeError('Invalid Lecturer');
         }
-        const obj = {lecturerID: lecturerID, departmentID:departmentID}; 
         lecturerdepartments.create(obj);
     }
     update(id, obj)
@@ -20,9 +19,10 @@ class LecturerDepartmentsController{
         else if (obj.length == 0) throw Error("Empty objects not allowed");
         lecturerdepartments.update(id, obj);
     }
-    find(obj)
+    async find(obj)
     {
-        lecturerdepartments.find(obj);
+        if (obj.length == 0) return await lecturerdepartments.read();
+        return await lecturerdepartments.find(obj);
     }
     delete(id)
     {

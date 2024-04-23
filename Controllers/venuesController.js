@@ -1,12 +1,11 @@
 const venue = require('../Models/venues').venue;
 
 class VenuesController{
-    create(venueName)
+    create(obj)
     {
-        if (typeof(venueName) != 'string' || venueName.length < 2) {
+        if (typeof(obj.venueName) != 'string' || obj.venueName.length < 2) {
             throw TypeError('Invalid Venue');
         }
-        const obj = {venueName: venueName}; 
         venue.create(obj);
     }
     update(id, obj)

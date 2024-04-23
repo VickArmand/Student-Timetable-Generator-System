@@ -1,15 +1,14 @@
 const department = require('../Models/departments').department;
 
 class DepartmentsController{
-    create(departmentName, schoolID)
+    create(obj)
     {
-        if (typeof(departmentName) != 'string' || departmentName.length < 2) {
+        if (typeof(obj.departmentName) != 'string' || obj.departmentName.length < 2) {
             throw TypeError('Invalid Department');
         }
-        else if (typeof(schoolID) != 'string' || schoolID.length < 2) {
+        else if (typeof(obj.schoolID) != 'string' || obj.schoolID.length < 2) {
             throw TypeError('Invalid School');
         }
-        const obj = {departmentName: departmentName, schoolID: schoolID}; 
         department.create(obj);
     }
     update(id, obj)
@@ -20,9 +19,10 @@ class DepartmentsController{
         else if (obj.length == 0) throw Error("Empty objects not allowed");
         department.update(id, obj);
     }
-    find(obj)
+    async find(obj)
     {
-        department.find(obj);
+        if (obj.length == 0) return await department.read();
+        return await department.find(obj);
     }
     delete(id)
     {

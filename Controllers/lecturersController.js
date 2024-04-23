@@ -1,15 +1,14 @@
 const lecturer = require('../Models/lecturers').lecturer;
 
 class LecturersController{
-    create(firstName, lastName)
+    create(obj)
     {
-        if (typeof(firstName) != 'string' || firstName.length < 4) {
+        if (typeof(obj.firstName) != 'string' || obj.firstName.length < 4) {
             throw TypeError('Invalid FirstName');
         }
-        else if (typeof(lastName) != 'string' || lastName.length < 4) {
+        else if (typeof(obj.lastName) != 'string' || obj.lastName.length < 4) {
             throw TypeError('Invalid LastName');
         }
-        const obj = {firstName: firstName, lastName: lastName}; 
         lecturer.create(obj);
     }
     update(id, obj)
@@ -20,9 +19,10 @@ class LecturersController{
         else if (obj.length == 0) throw Error("Empty objects not allowed");
         lecturer.update(id, obj);
     }
-    find(obj)
+    async find(obj)
     {
-        lecturer.find(obj);
+        if (obj.length == 0) return await lecturer.read();
+        return await lecturer.find(obj);
     }
     delete(id)
     {

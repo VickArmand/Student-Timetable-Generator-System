@@ -5,7 +5,7 @@ const lecturerController = require('./Controllers/lecturersController').lecturer
 const lectureController = require('./Controllers/lecturesController').lectureController;
 const schoolController = require('./Controllers/schoolsController').schoolController;
 const venueController = require('./Controllers/venuesController').venueController
-
+const views = require('./Views/views').views;
 
 const http = require('http');
 // const add = require('./locations').add;
@@ -14,17 +14,7 @@ http.createServer((req, res)=>{
     res.end("Hello World!");
 }).listen(3000, ()=>{
     console.log("Server started");
-    // course.create({name: "Computer Science"});
-    // course.read();
-    // course.find({name: "Computer Science"});
-    async function find() {
-        let record = await courseController.find({_id: '6614179e072398969b5eb672'});
-        console.log(record);
-        record = await venueController.find({venueName: "MPH"});
-        console.log("record",record);
-    };
-    find();
-    // course.update('6614179e072398969b5eb672', {name: 'Actuarial Science'});
-    // course.delete('6614178879705bbb4e877a6d');
-    // console.log(course.find({name: "Computer Science"}));
+    views.create(venueController, {venueName: "Graduation Square"});
+    const records = async() => await views.find(venueController, {});
+    console.log(records);
 });
