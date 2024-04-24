@@ -36,8 +36,7 @@ class Department extends BaseModel{
     }
     async update(existObj, updatedObj)
     {
-        updated_at = new Date().toISOString();
-        updatedObj.updated_at = updated_at;
+        updatedObj.updated_at = new Date().toISOString();
         await this.departmentModel.findOneAndUpdate(existObj, updatedObj).then((updated_record)=>{
             if(!updated_record) console.log("Record not found");
             else console.log("Update success");

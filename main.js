@@ -14,13 +14,13 @@ http.createServer((req, res)=>{
     res.end("Hello World!");
 }).listen(3000, ()=>{
     console.log("Server started");
-    // views.create(venueController, {venueName: "Graduation Square"});
+    views.create(venueController, {venueName: "Graduation Square"});
     async function findVenues(obj) {
         console.log(await views.find(venueController, obj));
     }
     findVenues({})
     findVenues({venueName: "Graduation Square"})
-    //views.update(venueController, {venueName: "Graduation Square"});
+    views.update(venueController, {venueName: "Graduation Square"}, {venueName: "MPH"});
     views.delete(venueController, {venueName: "Graduation Square"});
 
 });
