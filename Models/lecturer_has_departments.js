@@ -33,17 +33,27 @@ class LecturerDepartments extends BaseModel{
     {
         return this.lecturerDepartmentModel.find(obj);
     }
-    update(id, obj)
+    async update(existObj, updatedObj)
     {
         updated_at = new Date().toISOString();
-        obj.updated_at = updated_at;
-        this.lecturerDepartmentModel.update({id: id}, obj, (err)=>{
-            if (err) console.log(err);});
+        updatedObj.updated_at = updated_at;
+        await this.lecturerDepartmentModel.findOneAndUpdate(existObj, updatedObj).then((updated_record)=>{
+            if(!updated_record) console.log("Record not found");
+            else console.log("Update success");
+        }).catch(err=>{
+            console.log(err.message);
+            throw err;
+        });
     }
-    delete(id)
+    async delete(obj)
     {
-        this.lecturerDepartmentModel.delete({id: id}, (err)=>{
-            if (err) console.log(err);});
+        await this.lecturerDepartmentModel.findOneAndDelete(obj).then((deleted_record)=>{
+            if(!deleted_record) console.log("Record not found");
+            else console.log("Deletion success");
+        }).catch(err=>{
+            console.log(err.message);
+            throw err;
+        });
     }
 }
 exports.LecturerDepartment = new LecturerDepartments();

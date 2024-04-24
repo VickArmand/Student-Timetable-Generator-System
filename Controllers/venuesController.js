@@ -8,25 +8,21 @@ class VenuesController{
         }
         venue.create(obj);
     }
-    update(id, obj)
+    update(existObj, updatedObj)
     {
-        if (typeof(id) != 'string' || id.length < 2) {
-            throw TypeError('Invalid ID');
+        if (updatedObj.length < 1) {
+            throw Error('Empty objects not allowed');
         }
-        else if (obj.length == 0) throw Error("Empty objects not allowed");
-        venue.update(id, obj);
+        venue.update(existObj, updatedObj);
     }
     find(obj)
     {
         if (obj.length == 0) return venue.read();
         return venue.find(obj);
     }
-    delete(id)
+    delete(obj)
     {
-        if (typeof(id) != 'string' || id.length < 2) {
-            throw TypeError('Invalid ID');
-        } 
-        venue.delete(id);
+        venue.delete(obj);
     }
 }
 exports.venueController = new VenuesController()

@@ -39,17 +39,27 @@ class Lecture extends BaseModel{
     {
         return this.lecturesModel.find(obj);
     }
-    update(id, obj)
+    async update(existObj, updatedObj)
     {
         updated_at = new Date().toISOString();
-        obj.updated_at = updated_at;
-        this.lecturesModel.update({id: id}, obj, (err)=>{
-            if (err) console.log(err);});
+        updatedObj.updated_at = updated_at;
+        await this.lecturesModel.findOneAndUpdate(existObj, updatedObj).then((updated_record)=>{
+            if(!updated_record) console.log("Record not found");
+            else console.log("Update success");
+        }).catch(err=>{
+            console.log(err.message);
+            throw err;
+        });
     }
-    delete(id)
+    async delete(obj)
     {
-        this.lecturesModel.delete({id: id}, (err)=>{
-            if (err) console.log(err);});
+        await this.lecturesModel.findOneAndDelete(obj).then((deleted_record)=>{
+            if(!deleted_record) console.log("Record not found");
+            else console.log("Deletion success");
+        }).catch(err=>{
+            console.log(err.message);
+            throw err;
+        });
     }
 }
 exports.lecture = new Lecture();

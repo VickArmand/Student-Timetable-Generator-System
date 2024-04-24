@@ -47,22 +47,22 @@ class Course extends BaseModel{
             (course)=> {return course}).catch((err) => {throw err;});
         return record;
     }
-    async update(id, obj)
+    async update(existObj, updatedObj)
     {
-        const updated_at = new Date().toISOString();
-        obj.updated_at = updated_at;
-        await this.courseModel.updateOne({_id: id}, obj).then((updated_course)=>{
-            if(!updated_course) console.log("Updation failure");
-            else console.log("Updation success");
+        updated_at = new Date().toISOString();
+        updatedObj.updated_at = updated_at;
+        await this.courseModel.findOneAndUpdate(existObj, updatedObj).then((updated_record)=>{
+            if(!updated_record) console.log("Record not found");
+            else console.log("Update success");
         }).catch(err=>{
             console.log(err.message);
             throw err;
         });
     }
-    async delete(id)
+    async delete(obj)
     {
-        await this.courseModel.deleteOne({_id: id}).then((deleted_course)=>{
-            if(!deleted_course) console.log("Deletion failure");
+        await this.courseModel.findOneAndDelete(obj).then((deleted_record)=>{
+            if(!deleted_record) console.log("Record not found");
             else console.log("Deletion success");
         }).catch(err=>{
             console.log(err.message);

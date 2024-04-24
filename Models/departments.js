@@ -34,17 +34,27 @@ class Department extends BaseModel{
     {
         return this.departmentModel.find(obj);
     }
-    update(id, obj)
+    async update(existObj, updatedObj)
     {
         updated_at = new Date().toISOString();
-        obj.updated_at = updated_at;
-        this.departmentModel.update({id: id}, obj, (err)=>{
-            if (err) console.log(err);});
+        updatedObj.updated_at = updated_at;
+        await this.departmentModel.findOneAndUpdate(existObj, updatedObj).then((updated_record)=>{
+            if(!updated_record) console.log("Record not found");
+            else console.log("Update success");
+        }).catch(err=>{
+            console.log(err.message);
+            throw err;
+        });
     }
-    delete(id)
+    async delete(obj)
     {
-        this.departmentModel.delete({id: id}, (err)=>{
-            if (err) console.log(err);});
+        await this.departmentModel.findOneAndDelete(obj).then((deleted_record)=>{
+            if(!deleted_record) console.log("Record not found");
+            else console.log("Deletion success");
+        }).catch(err=>{
+            console.log(err.message);
+            throw err;
+        });
     }
 }
 exports.department = new Department();
