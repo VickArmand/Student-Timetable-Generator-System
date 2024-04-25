@@ -1,0 +1,24 @@
+const express = require('express');
+const courseController = require('./Controllers/coursesController').courseController;
+const departmentController = require('./Controllers/departmentsController').departmentController;
+const lecturerDepartmentController = require('./Controllers/lecturerDepartmentsController').lecturerDepartmentController;
+const lecturerController = require('./Controllers/lecturersController').lecturerController;
+const lectureController = require('./Controllers/lecturesController').lectureController;
+const schoolController = require('./Controllers/schoolsController').schoolController;
+const venueController = require('./Controllers/venuesController').venueController;
+const views = require('./Views/views').views;
+
+const router = express.Router();
+router.post('/schools/add', async (request, response) => response.send(await views.create(schoolController, request.body)));
+router.post('/venues/add', async (request, response) => response.send(await views.create(venueController, request.body)));
+router.post('/courses/add', async (request, response) => response.send(await views.create(courseController, request.body)));
+router.post('/departments/add', async (request, response) => response.send(await views.create(departmentController, request.body)));
+router.post('/lecturer/add', async (request, response) => response.send(await views.create(lecturerController, request.body)));
+router.post('/lecture/add', async (request, response) => response.send(await views.create(lectureController, request.body)));
+router.get('/schools', async (request, response) => response.send(await views.find(schoolController, request.body)));
+router.get('/venues', async (request, response) => response.send(await views.find(venueController, request.body)));
+router.get('/courses', async (request, response) => response.send(await views.find(courseController, request.body)));
+router.get('/departments', async (request, response) => response.send(await views.find(departmentController, request.body)));
+router.get('/lecturer', async (request, response) => response.send(await views.find(lecturerController, request.body)));
+router.get('/lecture', async (request, response) => response.send(await views.find(lectureController, request.body)));
+module.exports = router;
