@@ -16,15 +16,15 @@ class DepartmentsController{
         if (updatedObj.length < 1) {
             return { error: 'Empty objects not allowed' };
         }
-        venue.update(existObj, updatedObj);
+        department.update(existObj, updatedObj);
     }
     find(obj)
     {
-        return venue.find(obj);
+        return department.find(obj);
     }
     delete(obj)
     {
-        venue.delete(obj);
+        department.delete(obj);
     }
 }
 exports.departmentController = new DepartmentsController();

@@ -16,15 +16,15 @@ class LecturerDepartmentsController{
         if (updatedObj.length < 1) {
             return { error: 'Empty objects not allowed' };
         }
-        venue.update(existObj, updatedObj);
+        lecturerdepartments.update(existObj, updatedObj);
     }
     find(obj)
     {
-        return venue.find(obj);
+        return lecturerdepartments.find(obj);
     }
     delete(obj)
     {
-        venue.delete(obj);
+        lecturerdepartments.delete(obj);
     }
 }
 exports.lecturerDepartmentController = new LecturerDepartmentsController();

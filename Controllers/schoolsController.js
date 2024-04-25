@@ -13,15 +13,15 @@ class SchoolsController{
         if (updatedObj.length < 1) {
             return { error: 'Empty objects not allowed' };
         }
-        venue.update(existObj, updatedObj);
+        school.update(existObj, updatedObj);
     }
     find(obj)
     {
-        return venue.find(obj);
+        return school.find(obj);
     }
     delete(obj)
     {
-        venue.delete(obj);
+        school.delete(obj);
     }
 }
 exports.schoolController = new SchoolsController()
