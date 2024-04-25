@@ -1,9 +1,8 @@
-const BaseModel = require('./baseModel').BaseModel;
-class Department extends BaseModel{
+class Department {
+    mongoose = require('mongoose');
     collectionName = 'departments';
     constructor()
     {
-        super();
         this.schema = this.mongoose.Schema({
             departmentName: {type: String, unique: true, required: true, maxlength: 50},
             schoolID: {type: String, required: true},

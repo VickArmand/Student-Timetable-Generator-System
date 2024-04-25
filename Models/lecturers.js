@@ -1,9 +1,9 @@
 const BaseModel = require('./baseModel').BaseModel;
-class Lecturer extends BaseModel{
+class Lecturer {
     collectionName = 'lecturers';
+    mongoose = require('mongoose');
     constructor()
     {
-        super();
         this.schema = this.mongoose.Schema({
             firstName: {type: String, required: true},
             lastName: {type: String, required: true},

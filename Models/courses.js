@@ -1,11 +1,8 @@
-const { type } = require('express/lib/response');
-
-const BaseModel = require('./baseModel').BaseModel;
-class Course extends BaseModel{
+class Course{
+    mongoose = require('mongoose');
     collectionName = 'courses';
     constructor()
     {
-        super();
         this.schema = this.mongoose.Schema({
             courseName: {type: String, unique: true, required: true, dropDups:true, maxlength: 50},
             years: {type: Number, required: true},
