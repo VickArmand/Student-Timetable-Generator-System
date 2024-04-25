@@ -4,32 +4,27 @@ class LecturerDepartmentsController{
     create(obj)
     {
         if (typeof(obj.departmentID) != 'string' || obj.departmentID.length < 2) {
-            throw TypeError('Invalid Department');
+            return { error: 'Invalid Department' };
         }
         else if (typeof(obj.lecturerID) != 'string' || obj.lecturerID.length < 2) {
-            throw TypeError('Invalid Lecturer');
+            return { error: 'Invalid Lecturer' };
         }
         lecturerdepartments.create(obj);
     }
-    update(id, obj)
+    update(existObj, updatedObj)
     {
-        if (typeof(id) != 'string' || id.length < 2) {
-            throw TypeError('Invalid ID');
+        if (updatedObj.length < 1) {
+            return { error: 'Empty objects not allowed' };
         }
-        else if (obj.length == 0) throw Error("Empty objects not allowed");
-        lecturerdepartments.update(id, obj);
+        venue.update(existObj, updatedObj);
     }
-    async find(obj)
+    find(obj)
     {
-        if (obj.length == 0) return await lecturerdepartments.read();
-        return await lecturerdepartments.find(obj);
+        return venue.find(obj);
     }
-    delete(id)
+    delete(obj)
     {
-        if (typeof(id) != 'string' || id.length < 2) {
-            throw TypeError('Invalid ID');
-        } 
-        lecturerdepartments.delete(id);
+        venue.delete(obj);
     }
 }
 exports.lecturerDepartmentController = new LecturerDepartmentsController();

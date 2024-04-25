@@ -4,32 +4,27 @@ class DepartmentsController{
     create(obj)
     {
         if (typeof(obj.departmentName) != 'string' || obj.departmentName.length < 2) {
-            throw TypeError('Invalid Department');
+            return { error: 'Invalid Department' };
         }
         else if (typeof(obj.schoolID) != 'string' || obj.schoolID.length < 2) {
-            throw TypeError('Invalid School');
+            return { error: 'Invalid School' };
         }
         department.create(obj);
     }
-    update(id, obj)
+    update(existObj, updatedObj)
     {
-        if (typeof(id) != 'string' || id.length < 2) {
-            throw TypeError('Invalid ID');
+        if (updatedObj.length < 1) {
+            return { error: 'Empty objects not allowed' };
         }
-        else if (obj.length == 0) throw Error("Empty objects not allowed");
-        department.update(id, obj);
+        venue.update(existObj, updatedObj);
     }
-    async find(obj)
+    find(obj)
     {
-        if (obj.length == 0) return await department.read();
-        return await department.find(obj);
+        return venue.find(obj);
     }
-    delete(id)
+    delete(obj)
     {
-        if (typeof(id) != 'string' || id.length < 2) {
-            throw TypeError('Invalid ID');
-        } 
-        department.delete(id);
+        venue.delete(obj);
     }
 }
 exports.departmentController = new DepartmentsController();

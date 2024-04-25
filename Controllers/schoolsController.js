@@ -4,29 +4,24 @@ class SchoolsController{
     create(obj)
     {
         if (typeof(obj.schoolName) != 'string' || obj.schoolName.length < 2) {
-            throw TypeError('Invalid Name');
+            return { error: 'Invalid Name' };
         }
         school.create(obj);
     }
-    update(id, obj)
+    update(existObj, updatedObj)
     {
-        if (typeof(id) != 'string' || id.length < 2) {
-            throw TypeError('Invalid ID');
+        if (updatedObj.length < 1) {
+            return { error: 'Empty objects not allowed' };
         }
-        else if (obj.length == 0) throw Error("Empty objects not allowed");
-        school.update(id, obj);
+        venue.update(existObj, updatedObj);
     }
     find(obj)
     {
-        if (obj.length == 0) return school.read();
-        return school.find(obj);
+        return venue.find(obj);
     }
-    delete(id)
+    delete(obj)
     {
-        if (typeof(id) != 'string' || id.length < 2) {
-            throw TypeError('Invalid ID');
-        } 
-        school.delete(id);
+        venue.delete(obj);
     }
 }
 exports.schoolController = new SchoolsController()

@@ -4,41 +4,36 @@ class CoursesController{
     create(obj)
     {
         if (typeof(obj.years) !== 'number' || obj.years < 1){
-            throw TypeError('Invalid years');
+            return { error: 'Invalid years' };
         }
         else if(typeof(obj.semesters) !== 'number' || obj.semesters < 1){
-            throw TypeError('Invalid semesters');
+            return {error: 'Invalid semesters' };
         }
         else if (typeof(obj.courseName) != 'string' || obj.courseName.length < 2) {
-            throw TypeError('Invalid Course');
+            return {error: 'Invalid Course' };
         }
         else if (typeof(obj.departmentID) != 'string' || obj.departmentID.length < 2) {
-            throw TypeError('Invalid Department');
+            return {error: 'Invalid Department' };
         }
         else if (typeof(obj.schoolID) != 'string' || obj.schoolID.length < 2) {
-            throw TypeError('Invalid School');
+            return {error: 'Invalid School' };
         }
         course.create(obj);
     }
-    update(id, obj)
+    update(existObj, updatedObj)
     {
-        if (typeof(id) != 'string' || id.length < 2) {
-            throw TypeError('Invalid ID');
+        if (updatedObj.length < 1) {
+            return { error: 'Empty objects not allowed' };
         }
-        else if (obj.length == 0) throw Error("Empty objects not allowed");
-        course.update(id, obj);
+        venue.update(existObj, updatedObj);
     }
-    async find(obj)
+    find(obj)
     {
-        if (obj.length == 0) return await course.read();
-        return await course.find(obj);
+        return venue.find(obj);
     }
-    delete(id)
+    delete(obj)
     {
-        if (typeof(id) != 'string' || id.length < 2) {
-            throw TypeError('Invalid ID');
-        } 
-        course.delete(id);
+        venue.delete(obj);
     }
 }
 exports.courseController = new CoursesController();

@@ -4,32 +4,27 @@ class LecturersController{
     create(obj)
     {
         if (typeof(obj.firstName) != 'string' || obj.firstName.length < 4) {
-            throw TypeError('Invalid FirstName');
+            return { error: 'Invalid FirstName' };
         }
         else if (typeof(obj.lastName) != 'string' || obj.lastName.length < 4) {
-            throw TypeError('Invalid LastName');
+            return { error: 'Invalid LastName' };
         }
         lecturer.create(obj);
     }
-    update(id, obj)
+    update(existObj, updatedObj)
     {
-        if (typeof(id) != 'string' || id.length < 2) {
-            throw TypeError('Invalid ID');
+        if (updatedObj.length < 1) {
+            return { error: 'Empty objects not allowed' };
         }
-        else if (obj.length == 0) throw Error("Empty objects not allowed");
-        lecturer.update(id, obj);
+        venue.update(existObj, updatedObj);
     }
-    async find(obj)
+    find(obj)
     {
-        if (obj.length == 0) return await lecturer.read();
-        return await lecturer.find(obj);
+        return venue.find(obj);
     }
-    delete(id)
+    delete(obj)
     {
-        if (typeof(id) != 'string' || id.length < 2) {
-            throw TypeError('Invalid ID');
-        } 
-        lecturer.delete(id);
+        venue.delete(obj);
     }
 }
 exports.lecturerController = new LecturersController()
