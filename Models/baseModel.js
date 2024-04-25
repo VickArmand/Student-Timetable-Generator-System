@@ -1,9 +1,9 @@
-exports.BaseModel = class BaseModel{
+class BaseModel{
     constructor(){
         this.mongoose = require('mongoose');
         this.uri = "mongodb://localhost:27017/";
         this.dbName = "timetabledb";
-        this.init();
+        this.connectDB();
         this.mongoose.connection.on('connected', ()=>{
             console.log("connection success");
         });
@@ -14,13 +14,12 @@ exports.BaseModel = class BaseModel{
             console.log('Mongoose disconnected');
         }); 
     }
-    async init()
+    async connectDB()
     {
         try {
             await this.mongoose.connect(this.uri + this.dbName); 
         } catch (err) {
-            console.log("error");
-            throw err; 
+            throw err;
         }
     }
     async exit()
@@ -28,3 +27,4 @@ exports.BaseModel = class BaseModel{
         this.mongoose.close();
     }
 }
+module.exports = new BaseModel();
