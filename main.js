@@ -8,19 +8,27 @@ const venueController = require('./Controllers/venuesController').venueControlle
 const views = require('./Views/views').views;
 
 const http = require('http');
-// const add = require('./locations').add;
 http.createServer((req, res)=>{
     res.writeHead(200, {'Content-Type': 'application/json'});
     res.end("Hello World!");
 }).listen(3000, ()=>{
     console.log("Server started");
-    views.create(venueController, {venueName: "Graduation Square"});
+    
+    async function createVenues() {
+        const venue = await views.create(venueController, {venueName: "Graduation Square"});
+        console.log(venue);
+    }
+    createVenues()
+    // views.create(courseController, {courseName: "Computer Science", years: 4, semesters: 2, departmentID: ,schoolID: });
     async function findVenues(obj) {
         console.log(await views.find(venueController, obj));
     }
-    findVenues({})
-    findVenues({venueName: "Graduation Square"})
-    views.update(venueController, {venueName: "Graduation Square"}, {venueName: "MPH"});
-    views.delete(venueController, {venueName: "Graduation Square"});
-
+    async function findCourse(obj) {
+        console.log(await views.find(courseController, obj));
+    }
+    findCourse({});
+    // findVenues({});
+    // findVenues({venueName: "Graduation Square"})
+    // views.update(venueController, {venueName: "Graduation Square"}, {Name: "GSquare"});
+    // views.delete(venueController, {venueName: "Graduation Square"});
 });

@@ -11,48 +11,47 @@ class LecturerDepartments extends BaseModel{
             updated_at: {type: Date, default: Date.now}});
         this.lecturerDepartmentModel = this.mongoose.model(this.collectionName, this.schema);
     }
-    create(obj)
+    async create(obj)
     {
-        this.lecturerDepartmentModel.create(obj).then((created_record)=>{
-            if(!created_record) console.log("Creation failure");
-            else console.log("Creation success");
+        let response = {};
+        await this.lecturerDepartmentModel.create(obj).then((created_record)=>{
+            if(!created_record) response.message = "Creation failure";
+            else response = created_record;
         }).catch(err=>{
-            console.log(err.message);
-            throw err;
+            response.message = err.message;
         });
+        return response;
     }
-    read(){
-        records = [];
-        this.lecturerDepartmentModel.find().each((err, doc)=>{
-            if (err) console.log(err);
-            records.push(doc);
-        });
-        return records;
-    }
-    find(obj)
+    async find(obj)
     {
-        return this.lecturerDepartmentModel.find(obj);
+        let response = {};
+        await this.lecturerDepartmentModel.find(obj).then((records)=>{
+            records.forEach((record) => response[record.id] = record);
+        }).catch((err) => response.error = err.message);
+        return response;
     }
     async update(existObj, updatedObj)
     {
+        let response = {};
         updatedObj.updated_at = new Date().toISOString();
         await this.lecturerDepartmentModel.findOneAndUpdate(existObj, updatedObj).then((updated_record)=>{
-            if(!updated_record) console.log("Record not found");
-            else console.log("Update success");
+            if(!updated_record) response.message = "Record not found";
+            else response.message = "Update success";
         }).catch(err=>{
-            console.log(err.message);
-            throw err;
+            response.error = err.message;
         });
+        return response;
     }
     async delete(obj)
     {
+        let response = {};
         await this.lecturerDepartmentModel.findOneAndDelete(obj).then((deleted_record)=>{
-            if(!deleted_record) console.log("Record not found");
-            else console.log("Deletion success");
+            if(!deleted_record) response.message = "Record not found";
+            else response.message = "Delete success";
         }).catch(err=>{
-            console.log(err.message);
-            throw err;
+            response.error = err.message;
         });
+        return response;
     }
 }
 exports.LecturerDepartment = new LecturerDepartments();
