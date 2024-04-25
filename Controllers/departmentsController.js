@@ -9,14 +9,14 @@ class DepartmentsController{
         else if (typeof(obj.schoolID) != 'string' || obj.schoolID.length < 2) {
             return { error: 'Invalid School' };
         }
-        department.create(obj);
+        return department.create(obj);
     }
     update(existObj, updatedObj)
     {
         if (updatedObj.length < 1) {
             return { error: 'Empty objects not allowed' };
         }
-        department.update(existObj, updatedObj);
+        return department.update(existObj, updatedObj);
     }
     find(obj)
     {
@@ -24,7 +24,7 @@ class DepartmentsController{
     }
     delete(obj)
     {
-        department.delete(obj);
+        return department.delete(obj);
     }
 }
 exports.departmentController = new DepartmentsController();

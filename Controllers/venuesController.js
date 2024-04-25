@@ -13,7 +13,7 @@ class VenuesController{
         if (updatedObj.length < 1) {
             return { error: 'Empty objects not allowed' };
         }
-        venue.update(existObj, updatedObj);
+        return venue.update(existObj, updatedObj);
     }
     find(obj)
     {
@@ -21,7 +21,7 @@ class VenuesController{
     }
     delete(obj)
     {
-        venue.delete(obj);
+        return venue.delete(obj);
     }
 }
 exports.venueController = new VenuesController()

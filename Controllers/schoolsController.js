@@ -6,14 +6,14 @@ class SchoolsController{
         if (typeof(obj.schoolName) != 'string' || obj.schoolName.length < 2) {
             return { error: 'Invalid Name' };
         }
-        school.create(obj);
+        return school.create(obj);
     }
     update(existObj, updatedObj)
     {
         if (updatedObj.length < 1) {
             return { error: 'Empty objects not allowed' };
         }
-        school.update(existObj, updatedObj);
+        return school.update(existObj, updatedObj);
     }
     find(obj)
     {
@@ -21,7 +21,7 @@ class SchoolsController{
     }
     delete(obj)
     {
-        school.delete(obj);
+        return school.delete(obj);
     }
 }
 exports.schoolController = new SchoolsController()

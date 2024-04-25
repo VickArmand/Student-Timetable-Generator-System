@@ -18,14 +18,14 @@ class CoursesController{
         else if (typeof(obj.schoolID) != 'string' || obj.schoolID.length < 2) {
             return {error: 'Invalid School' };
         }
-        course.create(obj);
+        return course.create(obj);
     }
     update(existObj, updatedObj)
     {
         if (updatedObj.length < 1) {
             return { error: 'Empty objects not allowed' };
         }
-        course.update(existObj, updatedObj);
+        return course.update(existObj, updatedObj);
     }
     find(obj)
     {
@@ -33,7 +33,7 @@ class CoursesController{
     }
     delete(obj)
     {
-        course.delete(obj);
+        return course.delete(obj);
     }
 }
 exports.courseController = new CoursesController();

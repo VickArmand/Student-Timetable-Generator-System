@@ -9,14 +9,14 @@ class LecturersController{
         else if (typeof(obj.lastName) != 'string' || obj.lastName.length < 4) {
             return { error: 'Invalid LastName' };
         }
-        lecturer.create(obj);
+        return lecturer.create(obj);
     }
     update(existObj, updatedObj)
     {
         if (updatedObj.length < 1) {
             return { error: 'Empty objects not allowed' };
         }
-        lecturer.update(existObj, updatedObj);
+        return lecturer.update(existObj, updatedObj);
     }
     find(obj)
     {
@@ -24,7 +24,7 @@ class LecturersController{
     }
     delete(obj)
     {
-        lecturer.delete(obj);
+        return lecturer.delete(obj);
     }
 }
 exports.lecturerController = new LecturersController()

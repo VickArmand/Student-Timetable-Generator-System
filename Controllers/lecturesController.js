@@ -21,14 +21,14 @@ class LecturesController{
         else if (typeof(obj.venueID) != 'string' || obj.venueID.length < 2) {
             return { error: 'Invalid Venue' };
         }
-        lecture.create(obj);
+        return lecture.create(obj);
     }
     update(existObj, updatedObj)
     {
         if (updatedObj.length < 1) {
             return { error: 'Empty objects not allowed' };
         }
-        lecture.update(existObj, updatedObj);
+        return lecture.update(existObj, updatedObj);
     }
     find(obj)
     {
@@ -36,7 +36,7 @@ class LecturesController{
     }
     delete(obj)
     {
-        lecture.delete(obj);
+        return lecture.delete(obj);
     }
 }
 exports.lectureController = new LecturesController()

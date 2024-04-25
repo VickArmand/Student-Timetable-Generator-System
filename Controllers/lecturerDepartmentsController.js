@@ -9,14 +9,14 @@ class LecturerDepartmentsController{
         else if (typeof(obj.lecturerID) != 'string' || obj.lecturerID.length < 2) {
             return { error: 'Invalid Lecturer' };
         }
-        lecturerdepartments.create(obj);
+        return lecturerdepartments.create(obj);
     }
     update(existObj, updatedObj)
     {
         if (updatedObj.length < 1) {
             return { error: 'Empty objects not allowed' };
         }
-        lecturerdepartments.update(existObj, updatedObj);
+        return lecturerdepartments.update(existObj, updatedObj);
     }
     find(obj)
     {
@@ -24,7 +24,7 @@ class LecturerDepartmentsController{
     }
     delete(obj)
     {
-        lecturerdepartments.delete(obj);
+        return lecturerdepartments.delete(obj);
     }
 }
 exports.lecturerDepartmentController = new LecturerDepartmentsController();
