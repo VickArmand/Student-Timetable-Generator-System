@@ -6,7 +6,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    
+    "express": "^4.19.2",
+    "mongoose": "^8.4.3",
+    "passport": "^0.7.0"
   },
   "author": "vickarmand",
   "license": "ISC",
