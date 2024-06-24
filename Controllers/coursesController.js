@@ -1,24 +1,30 @@
 const course = require('../Models/courses').course;
 
 class CoursesController{
-    create(obj)
+    create(req, res)
     {
-        if (typeof(obj.years) !== 'number' || obj.years < 1){
-            return { error: 'Invalid years' };
+        const years = parseInt(req.body.years);
+        const semesters = parseInt(req.body.semesters);
+        const departmentID = req.body.departmentID;
+        const schoolID = req.body.schoolID;
+        const courseName = req.body.courseName;
+
+        if (typeof(years) !== 'number' || years < 1){
+            return res.status(400).end({ error: 'Invalid years' });
         }
-        else if(typeof(obj.semesters) !== 'number' || obj.semesters < 1){
-            return {error: 'Invalid semesters' };
+        else if(typeof(semesters) !== 'number' || semesters < 1){
+            return res.status(400).end({error: 'Invalid semesters' });
         }
-        else if (typeof(obj.courseName) != 'string' || obj.courseName.length < 2) {
-            return {error: 'Invalid Course' };
+        else if (typeof(courseName) != 'string' || courseName.length < 2) {
+            return res.status(400).end({error: 'Invalid Course' });
         }
-        else if (typeof(obj.departmentID) != 'string' || obj.departmentID.length < 2) {
-            return {error: 'Invalid Department' };
+        else if (typeof(departmentID) != 'string' || departmentID.length < 2) {
+            return res.status(400).end({error: 'Invalid Department' });
         }
-        else if (typeof(obj.schoolID) != 'string' || obj.schoolID.length < 2) {
-            return {error: 'Invalid School' };
+        else if (typeof(schoolID) != 'string' || schoolID.length < 2) {
+            return res.status(400).end({error: 'Invalid School' });
         }
-        return course.create(obj);
+        return res.status(201).end(course.create({schoolID, courseName, departmentID, years, semesters}));
     }
     update(existObj, updatedObj)
     {

@@ -1,15 +1,17 @@
 const lecturer = require('../Models/lecturers').lecturer;
 
 class LecturersController{
-    create(obj)
+    create(req, res)
     {
-        if (typeof(obj.firstName) != 'string' || obj.firstName.length < 4) {
-            return { error: 'Invalid FirstName' };
+        const firstName = req.body.firstName;
+        const lastName = req.body.lastName;
+        if (typeof(firstName) != 'string' || firstName.length < 4) {
+            return res.status(400).end({ error: 'Invalid FirstName' });
         }
-        else if (typeof(obj.lastName) != 'string' || obj.lastName.length < 4) {
-            return { error: 'Invalid LastName' };
+        else if (typeof(lastName) != 'string' || lastName.length < 4) {
+            return res.status(400).end({ error: 'Invalid LastName' });
         }
-        return lecturer.create(obj);
+        return res.status(201).end(lecturer.create({firstName, lastName}));
     }
     update(existObj, updatedObj)
     {

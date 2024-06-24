@@ -1,15 +1,17 @@
 const department = require('../Models/departments').department;
 
 class DepartmentsController{
-    create(obj)
+    create(req, res)
     {
-        if (typeof(obj.departmentName) != 'string' || obj.departmentName.length < 2) {
-            return { error: 'Invalid Department' };
+        const departmentName = req.body.departmentName;
+        const schoolID = req.body.schoolID;
+        if (typeof(departmentName) != 'string' || departmentName.length < 2) {
+            return res.status(400).end({ error: 'Invalid Department' });
         }
-        else if (typeof(obj.schoolID) != 'string' || obj.schoolID.length < 2) {
-            return { error: 'Invalid School' };
+        else if (typeof(schoolID) != 'string' || schoolID.length < 2) {
+            return res.status(400).end({ error: 'Invalid School' });
         }
-        return department.create(obj);
+        return res.status(201).end(department.create({schoolID, departmentName}));
     }
     update(existObj, updatedObj)
     {
