@@ -9,12 +9,12 @@ const venueController = require('./Controllers/venuesController').venueControlle
 const views = require('./Views/views').views;
 
 const router = express.Router();
-router.post('/schools/add', async (request, response) => response.send(await views.create(schoolController, request.body)));
-router.post('/venues/add', async (request, response) => response.send(await views.create(venueController, request.body)));
-router.post('/courses/add', async (request, response) => response.send(await views.create(courseController, request.body)));
-router.post('/departments/add', async (request, response) => response.send(await views.create(departmentController, request.body)));
-router.post('/lecturer/add', async (request, response) => response.send(await views.create(lecturerController, request.body)));
-router.post('/lecture/add', async (request, response) => response.send(await views.create(lectureController, request.body)));
+router.post('/schools/add', schoolController.create);
+router.post('/venues/add', venueController.create);
+router.post('/courses/add', courseController.create);
+router.post('/departments/add', departmentController.create);
+router.post('/lecturer/add', lecturerController.create);
+router.post('/lecture/add', lectureController.create);
 router.get('/schools', async (request, response) => response.send(await views.find(schoolController, request.body)));
 router.get('/venues', async (request, response) => response.send(await views.find(venueController, request.body)));
 router.get('/courses', async (request, response) => response.send(await views.find(courseController, request.body)));
