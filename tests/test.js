@@ -1,11 +1,11 @@
-const courseController = require('./Controllers/coursesController').courseController;
-const departmentController = require('./Controllers/departmentsController').departmentController;
-const lecturerDepartmentController = require('./Controllers/lecturerDepartmentsController').lecturerDepartmentController;
-const lecturerController = require('./Controllers/lecturersController').lecturerController;
-const lectureController = require('./Controllers/lecturesController').lectureController;
-const schoolController = require('./Controllers/schoolsController').schoolController;
-const venueController = require('./Controllers/venuesController').venueController;
-const views = require('./Views/views').views;
+const courseController = require('../Controllers/coursesController').courseController;
+const departmentController = require('../Controllers/departmentsController').departmentController;
+const lecturerDepartmentController = require('../Controllers/lecturerDepartmentsController').lecturerDepartmentController;
+const lecturerController = require('../Controllers/lecturersController').lecturerController;
+const lectureController = require('../Controllers/lecturesController').lectureController;
+const schoolController = require('../Controllers/schoolsController').schoolController;
+const venueController = require('../Controllers/venuesController').venueController;
+const views = require('../Views/views').views;
 
 const http = require('http');
 http.createServer((req, res)=>{
