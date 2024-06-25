@@ -8,18 +8,18 @@ class BaseModel{
             console.log("connection success");
         });
         this.mongoose.connection.on('error', err=>{
-            console.log("connection error: ", err);
+            console.log("connection error: ", err.message);
         });
         this.mongoose.connection.on('disconnected', () => {
             console.log('Mongoose disconnected');
-        }); 
+        });
     }
     async connectDB()
     {
         try {
             await this.mongoose.connect(this.uri + this.dbName); 
         } catch (err) {
-            throw err;
+            console.log("connection error: ", err.message);
         }
     }
     async exit()
