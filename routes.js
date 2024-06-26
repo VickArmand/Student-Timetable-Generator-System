@@ -6,21 +6,37 @@ const lecturerController = require('./Controllers/lecturersController').lecturer
 const lectureController = require('./Controllers/lecturesController').lectureController;
 const schoolController = require('./Controllers/schoolsController').schoolController;
 const venueController = require('./Controllers/venuesController').venueController;
-const views = require('./Views/views').views;
 
 const router = express.Router();
 router.post('/schools/add', schoolController.create);
 router.post('/venues/add', venueController.create);
 router.post('/courses/add', courseController.create);
+router.post('/lecturerdepartments/add', lecturerDepartmentController.create);
 router.post('/departments/add', departmentController.create);
-router.post('/lecturer/add', lecturerController.create);
-router.post('/lecture/add', lectureController.create);
+router.post('/lecturers/add', lecturerController.create);
+router.post('/lectures/add', lectureController.create);
+
 router.get('/schools', schoolController.find);
 router.get('/venues', venueController.find);
 router.get('/courses', courseController.find);
+router.get('/lecturerdepartments', lecturerDepartmentController.find);
 router.get('/departments', departmentController.find);
-router.get('/lecturer', lecturerController.find);
-router.get('/lecture', lectureController.find);
+router.get('/lecturers', lecturerController.find);
+router.get('/lectures', lectureController.find);
+
+router.put('/schools/edit/:id', schoolController.update);
 router.put('/venues/edit/:id', venueController.update);
+router.put('/courses/edit/:id', courseController.update);
+router.put('/lecturerdepartments/edit/:id', lecturerDepartmentController.update);
+router.put('/departments/edit/:id', departmentController.update);
+router.put('/lecturers/edit/:id', lecturerController.update);
+router.put('/lectures/edit/:id', lectureController.update);
+
+router.delete('/schools/delete/:id', schoolController.delete);
 router.delete('/venues/delete/:id', venueController.delete);
+router.delete('/courses/delete/:id', courseController.delete);
+router.delete('/lecturerdepartments/delete/:id', lecturerDepartmentController.delete);
+router.delete('/departments/delete/:id', departmentController.delete);
+router.delete('/lecturers/delete/:id', lecturerController.delete);
+router.delete('/lectures/delete/:id', lectureController.delete);
 module.exports = router;

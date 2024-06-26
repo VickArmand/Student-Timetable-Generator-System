@@ -1,33 +1,48 @@
 const lecturerdepartments = require('../Models/lecturer_has_departments').LecturerDepartment;
 
 class LecturerDepartmentsController{
-    create(req, res)
+    async create(req, res)
     {
         const lecturerID = req.body.lecturerID;
         const departmentID = req.body.departmentID;
 
-        if (typeof(departmentID) != 'string' || departmentID.length < 2) {
+        if (!departmentID || departmentID.length < 2) {
             return res.status(400).json({ error: 'Invalid Department' });
         }
-        else if (typeof(lecturerID) != 'string' || lecturerID.length < 2) {
+        else if (!lecturerID || lecturerID.length < 2) {
             return res.status(400).json({ error: 'Invalid Lecturer' });
         }
-        return res.status(201).json(lecturerdepartments.create({departmentID, lecturerID}));
+        return res.status(201).json(await lecturerdepartments.create({departmentID, lecturerID}));
     }
-    update(existObj, updatedObj)
+    async update(req, res)
     {
-        if (updatedObj.length < 1) {
-            return { error: 'Empty objects not allowed' };
-        }
-        return lecturerdepartments.update(existObj, updatedObj);
+        const _id = req.params.id;
+        const updatedObj = req.body;
+        if (!_id)
+            return res.status(400).json({ error: 'Id required' });
+        if (Object.keys(updatedObj).length < 1)
+            return res.status(400).json({ error: 'Empty objects not allowed' });
+        const result = await venue.update({_id}, updatedObj);
+        if (result.error)
+            return res.status(400).json(result);
+        return res.status(200).json(result);
     }
-    find(obj)
+    async find(req, res)
     {
-        return lecturerdepartments.find(obj);
+        const result = await venue.find(req.query);
+        if (result.error)
+            return res.status(400).json(result);
+        return res.status(200).json(result);
     }
-    delete(obj)
+    async delete(req, res)
     {
-        return lecturerdepartments.delete(obj);
+        const id = req.params.id;
+        if (!id)
+            return res.status(400).json({error: 'Id required'});
+        const result = await venue.delete({_id: id});
+        if (result.error)
+            return res.status(400).json(result);
+        return res.status(200).json(result);
     }
 }
 exports.lecturerDepartmentController = new LecturerDepartmentsController();

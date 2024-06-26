@@ -1,29 +1,44 @@
 const school = require('../Models/schools').school;
 
 class SchoolsController{
-    create(req, res)
+    async create(req, res)
     {
         const schoolName = req.body.schoolName;
 
-        if (typeof(schoolName) != 'string' || schoolName.length < 2) {
+        if (!schoolName || schoolName.length < 2) {
             return res.status(400).json({ error: 'Invalid Name' });
         }
-        return res.status(201).json(school.create({schoolName}));
+        return res.status(201).json(await school.create({schoolName}));
     }
-    update(existObj, updatedObj)
+    async update(req, res)
     {
-        if (updatedObj.length < 1) {
-            return { error: 'Empty objects not allowed' };
-        }
-        return school.update(existObj, updatedObj);
+        const _id = req.params.id;
+        const updatedObj = req.body;
+        if (!_id)
+            return res.status(400).json({ error: 'Id required' });
+        if (Object.keys(updatedObj).length < 1)
+            return res.status(400).json({ error: 'Empty objects not allowed' });
+        const result = await venue.update({_id}, updatedObj);
+        if (result.error)
+            return res.status(400).json(result);
+        return res.status(200).json(result);
     }
-    find(obj)
+    async find(req, res)
     {
-        return school.find(obj);
+        const result = await venue.find(req.query);
+        if (result.error)
+            return res.status(400).json(result);
+        return res.status(200).json(result);
     }
-    delete(obj)
+    async delete(req, res)
     {
-        return school.delete(obj);
+        const id = req.params.id;
+        if (!id)
+            return res.status(400).json({error: 'Id required'});
+        const result = await venue.delete({_id: id});
+        if (result.error)
+            return res.status(400).json(result);
+        return res.status(200).json(result);
     }
 }
 exports.schoolController = new SchoolsController()

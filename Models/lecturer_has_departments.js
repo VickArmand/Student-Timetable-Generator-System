@@ -13,18 +13,18 @@ class LecturerDepartments {
     async create(obj)
     {
         let response = {};
-        await this.lecturerDepartmentModel.create(obj).then((created_record)=>{
-            if(!created_record) response.message = "Creation failure";
+        await this.venueModel.create(obj).then((created_record)=>{
+            if(!created_record) response.error = "Creation failure";
             else response = created_record;
         }).catch(err=>{
-            response.message = err.message;
+            response.error = err.message;
         });
         return response;
     }
     async find(obj)
     {
         let response = {};
-        await this.lecturerDepartmentModel.find(obj).then((records)=>{
+        await this.venueModel.find(obj).then((records)=>{
             records.forEach((record) => response[record.id] = record);
         }).catch((err) => response.error = err.message);
         return response;
@@ -32,10 +32,12 @@ class LecturerDepartments {
     async update(existObj, updatedObj)
     {
         let response = {};
+        if (!this.mongoose.Types.ObjectId.isValid(existObj._id))
+            return {error: "Invalid ID"};
         updatedObj.updated_at = new Date().toISOString();
-        await this.lecturerDepartmentModel.findOneAndUpdate(existObj, updatedObj).then((updated_record)=>{
-            if(!updated_record) response.message = "Record not found";
-            else response.message = "Update success";
+        await this.venueModel.findOneAndUpdate(existObj, updatedObj, {new: true}).then((updated_record)=>{
+            if(!updated_record) response.error = "Record not found";
+            else response = updated_record;
         }).catch(err=>{
             response.error = err.message;
         });
@@ -44,12 +46,14 @@ class LecturerDepartments {
     async delete(obj)
     {
         let response = {};
-        await this.lecturerDepartmentModel.findOneAndDelete(obj).then((deleted_record)=>{
-            if(!deleted_record) response.message = "Record not found";
-            else response.message = "Delete success";
-        }).catch(err=>{
-            response.error = err.message;
-        });
+        if (this.mongoose.Types.ObjectId.isValid(obj._id))
+            await this.venueModel.findOneAndDelete(obj).then((deleted_record)=>{
+                if(!deleted_record) response.error = "Record not found";
+                else response.message = deleted_record;
+            }).catch(err=>{
+                response.error = err.message;
+            });
+        else response.error = "Invalid ID"
         return response;
     }
 }
