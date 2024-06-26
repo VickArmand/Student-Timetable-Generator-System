@@ -24,6 +24,8 @@ class Units{
     async find(obj)
     {
         let response = {};
+        if (obj._id && !this.mongoose.Types.ObjectId.isValid(obj._id))
+            return {error: "Invalid ID"};
         await this.unitModel.find(obj).then((records)=>{
             records.forEach((record) => response[record.id] = record);
         }).catch((err) => response.error = err.message);

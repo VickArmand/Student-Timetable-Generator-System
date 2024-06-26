@@ -1,5 +1,8 @@
 const express = require('express');
 const { staticlectureController } = require('./Controllers/staticlecturesController');
+const { unitController } = require('./Controllers/unitsController');
+const { unitCourseController } = require('./Controllers/unitCoursesController');
+const { examController } = require('./Controllers/examsController');
 const courseController = require('./Controllers/coursesController').courseController;
 const departmentController = require('./Controllers/departmentsController').departmentController;
 const lecturerDepartmentController = require('./Controllers/lecturerDepartmentsController').lecturerDepartmentController;
@@ -16,7 +19,11 @@ router.post('/lecturerdepartments/add', lecturerDepartmentController.create);
 router.post('/departments/add', departmentController.create);
 router.post('/lecturers/add', lecturerController.create);
 router.post('/lectures/add', lectureController.create);
+router.post('/units/add', unitController.create);
+router.post('/unitcourses/add', unitCourseController.create);
+router.post('/exams/add', examController.create);
 router.post('/staticlectures/add', staticlectureController.create);
+
 
 router.get('/schools', schoolController.find);
 router.get('/venues', venueController.find);
@@ -25,6 +32,9 @@ router.get('/lecturerdepartments', lecturerDepartmentController.find);
 router.get('/departments', departmentController.find);
 router.get('/lecturers', lecturerController.find);
 router.get('/lectures', lectureController.find);
+router.get('/units', unitController.find);
+router.get('/unitcourses', unitCourseController.find);
+router.get('/exams', examController.find);
 router.get('/staticlectures', staticlectureController.find);
 
 router.put('/schools/edit/:id', schoolController.update);
@@ -34,6 +44,9 @@ router.put('/lecturerdepartments/edit/:id', lecturerDepartmentController.update)
 router.put('/departments/edit/:id', departmentController.update);
 router.put('/lecturers/edit/:id', lecturerController.update);
 router.put('/lectures/edit/:id', lectureController.update);
+router.put('/units/edit/:id', unitController.update);
+router.put('/unitcourses/edit/:id', unitCourseController.update);
+router.put('/exams/edit/:id', examController.update);
 router.put('/staticlectures/edit/:id', staticlectureController.update);
 
 router.delete('/schools/delete/:id', schoolController.delete);
@@ -43,6 +56,9 @@ router.delete('/lecturerdepartments/delete/:id', lecturerDepartmentController.de
 router.delete('/departments/delete/:id', departmentController.delete);
 router.delete('/lecturers/delete/:id', lecturerController.delete);
 router.delete('/lectures/delete/:id', lectureController.delete);
+router.delete('/units/delete/:id', unitController.delete);
+router.delete('/unitcourses/delete/:id', unitCourseController.delete);
+router.delete('/exams/delete/:id', examController.delete);
 router.delete('/staticlectures/delete/:id', staticlectureController.delete);
 
 module.exports = router;

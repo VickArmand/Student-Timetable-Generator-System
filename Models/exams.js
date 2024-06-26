@@ -27,8 +27,13 @@ class Exam {
     async find(obj)
     {
         let response = {};
+        if (obj._id && !this.mongoose.Types.ObjectId.isValid(obj._id))
+            return {error: "Invalid ID"};
         await this.examsModel.find(obj).then((records)=>{
-            records.forEach((record) => response[record.id] = record);
+            if (records.length < 1)
+                response.error = "Record Not Found";
+            else
+                records.forEach((record) => response[record.id] = record);
         }).catch((err) => response.error = err.message);
         return response;
     }

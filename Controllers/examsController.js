@@ -27,11 +27,11 @@ class ExamsController{
         const venueResult = await venue.find({_id: venueID});
         if (venueResult.error)
             return res.status(400).json({error: 'Venue not available' });
-        const validateEvent = await lecture.find({startTime, endTime, venue});
-        const validateSession = await lecture.find({unitCourseID, startTime, endTime});
+        const validateEvent = await exam.find({startTime, endTime, venue});
+        const validateSession = await exam.find({unitCourseID, startTime, endTime});
         if (Object.keys(validateEvent).length > 0 || Object.keys(validateSession).length > 0)
-            return res.status(400).json({error: 'Select a different time or venue to host your lecture' });
-        return res.status(201).json(await lecture.create({unitCourseID, venueID, startTime, endTime}));
+            return res.status(400).json({error: 'Select a different time or venue to host your exam' });
+        return res.status(201).json(await exam.create({unitCourseID, venueID, startTime, endTime}));
     }
     async update(req, res)
     {
@@ -57,18 +57,18 @@ class ExamsController{
         const venueResult = await venue.find({_id: venueID});
         if (venueID && venueResult.error)
             return res.status(400).json({error: 'Venue not available' });
-        const validateEvent = await lecture.find({startTime, endTime, venue});
-        const validateSession = await lecture.find({unitCourseID, startTime, endTime});
+        const validateEvent = await exam.find({startTime, endTime, venue});
+        const validateSession = await exam.find({unitCourseID, startTime, endTime});
         if (Object.keys(validateEvent).length > 0 || Object.keys(validateSession).length > 0)
-            return res.status(400).json({error: 'Select a different time or venue to host your lecture' });
-        const result = await lecture.update({_id}, updatedObj);
+            return res.status(400).json({error: 'Select a different time or venue to host your exam' });
+        const result = await exam.update({_id}, updatedObj);
         if (result.error)
             return res.status(400).json(result);
         return res.status(200).json(result);
     }
     async find(req, res)
     {
-        const result = await lecture.find(req.query);
+        const result = await exam.find(req.query);
         if (result.error)
             return res.status(400).json(result);
         return res.status(200).json(result);
@@ -78,10 +78,10 @@ class ExamsController{
         const id = req.params.id;
         if (!id)
             return res.status(400).json({error: 'Id required'});
-        const result = await lecture.delete({_id: id});
+        const result = await exam.delete({_id: id});
         if (result.error)
             return res.status(400).json(result);
         return res.status(200).json(result);
     }
 }
-exports.lectureController = new LecturesController()
+exports.examController = new ExamsController()
