@@ -1,8 +1,8 @@
 const { unitCourse } = require('../Models/unit_has_course');
 const venue = require('../Models/venues').venue;
-const lecture = require('../Models/lectures').lecture;
+const exam = require('../Models/exams').exam;
 
-class LecturesController{
+class ExamsController{
     async create(req, res)
     {
         const unitCourseID = req.body.unitCourseID;
@@ -18,7 +18,8 @@ class LecturesController{
             return res.status(400).json({ error: 'Invalid venue' });
         const startDateTime = new Date(start);
         const endDateTime = new Date(end);
-        if (startDateTime.toString() === "Invalid Date" || endDateTime.toString() === "Invalid Date" || startDateTime.getTime() > endDateTime.getTime())
+        if (startDateTime.toString() === "Invalid Date" || endDateTime.toString() === "Invalid Date" ||
+         startDateTime.getTime() > endDateTime.getTime())
             return res.status(400).json({ error: 'Invalid timestamps' });
         const unitCourseResult = await unitCourse.find({_id: unitCourseID});
         if (unitCourseResult.error)
@@ -26,11 +27,11 @@ class LecturesController{
         const venueResult = await venue.find({_id: venueID});
         if (venueResult.error)
             return res.status(400).json({error: 'Venue not available' });
-        const validateEvent = await lecture.find({startDateTime, endDateTime, venue});
-        const validateSession = await lecture.find({unitCourseID, startDateTime, endDateTime});
+        const validateEvent = await lecture.find({startTime, endTime, venue});
+        const validateSession = await lecture.find({unitCourseID, startTime, endTime});
         if (Object.keys(validateEvent).length > 0 || Object.keys(validateSession).length > 0)
             return res.status(400).json({error: 'Select a different time or venue to host your lecture' });
-        return res.status(201).json(await lecture.create({unitCourseID, venueID, startDateTime, endDateTime}));
+        return res.status(201).json(await lecture.create({unitCourseID, venueID, startTime, endTime}));
     }
     async update(req, res)
     {
@@ -38,8 +39,8 @@ class LecturesController{
         const updatedObj = req.body;
         const unitCourseID = updatedObj.unitCourseID;
         const venueID = updatedObj.venueID;
-        const start = updatedObj.startDateTime
-        const end = updatedObj.endDateTime
+        const start = updatedObj.startDateTime;
+        const end = updatedObj.endDateTime;
         const startDateTime = new Date(start);
         const endDateTime = new Date(end);
         if (!_id)

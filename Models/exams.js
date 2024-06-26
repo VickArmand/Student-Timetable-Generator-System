@@ -1,5 +1,5 @@
-class Lecture {
-    collectionName = 'lectures';
+class Exam {
+    collectionName = 'exams';
     mongoose = require('mongoose');
     constructor()
     {
@@ -11,12 +11,12 @@ class Lecture {
             created_at: {type: Date, default: Date.now},
             updated_at: {type: Date, default: Date.now}
         });
-        this.lecturesModel = this.mongoose.model(this.collectionName, this.schema);
+        this.examsModel = this.mongoose.model(this.collectionName, this.schema);
     }
     async create(obj)
     {
         let response = {};
-        await this.lecturesModel.create(obj).then((created_record)=>{
+        await this.examsModel.create(obj).then((created_record)=>{
             if(!created_record) response.error = "Creation failure";
             else response = created_record;
         }).catch(err=>{
@@ -27,7 +27,7 @@ class Lecture {
     async find(obj)
     {
         let response = {};
-        await this.lecturesModel.find(obj).then((records)=>{
+        await this.examsModel.find(obj).then((records)=>{
             records.forEach((record) => response[record.id] = record);
         }).catch((err) => response.error = err.message);
         return response;
@@ -38,7 +38,7 @@ class Lecture {
         if (!this.mongoose.Types.ObjectId.isValid(existObj._id))
             return {error: "Invalid ID"};
         updatedObj.updated_at = new Date().toISOString();
-        await this.lecturesModel.findOneAndUpdate(existObj, {$set: updatedObj}, {new: true}).then((updated_record)=>{
+        await this.examsModel.findOneAndUpdate(existObj, {$set: updatedObj}, {new: true}).then((updated_record)=>{
             if(!updated_record) response.error = "Record not found";
             else response = updated_record;
         }).catch(err=>{
@@ -50,7 +50,7 @@ class Lecture {
     {
         let response = {};
         if (this.mongoose.Types.ObjectId.isValid(obj._id))
-            await this.lecturesModel.findOneAndDelete(obj).then((deleted_record)=>{
+            await this.examsModel.findOneAndDelete(obj).then((deleted_record)=>{
                 if(!deleted_record) response.error = "Record not found";
                 else response.message = deleted_record;
             }).catch(err=>{
@@ -60,4 +60,4 @@ class Lecture {
         return response;
     }
 }
-exports.lecture = new Lecture();
+exports.exam = new Exam();

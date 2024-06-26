@@ -4,20 +4,20 @@ class StaticLecture {
     constructor()
     {
         this.schema = this.mongoose.Schema({
-            startTime: {type: Date, required: true},
-            endTime: {type: Date, required: true},
+            startTime: {type: String, required: true},
+            endTime: {type: String, required: true},
             unitCourseID: {type: String, required: true},
             day: {type: String, required: true},
             venueID: {type: String, required: true},
             created_at: {type: Date, default: Date.now},
             updated_at: {type: Date, default: Date.now}
         });
-        this.lecturesModel = this.mongoose.model(this.collectionName, this.schema);
+        this.staticlecturesModel = this.mongoose.model(this.collectionName, this.schema);
     }
     async create(obj)
     {
         let response = {};
-        await this.lecturesModel.create(obj).then((created_record)=>{
+        await this.staticlecturesModel.create(obj).then((created_record)=>{
             if(!created_record) response.error = "Creation failure";
             else response = created_record;
         }).catch(err=>{
@@ -28,7 +28,7 @@ class StaticLecture {
     async find(obj)
     {
         let response = {};
-        await this.lecturesModel.find(obj).then((records)=>{
+        await this.staticlecturesModel.find(obj).then((records)=>{
             records.forEach((record) => response[record.id] = record);
         }).catch((err) => response.error = err.message);
         return response;
@@ -39,7 +39,7 @@ class StaticLecture {
         if (!this.mongoose.Types.ObjectId.isValid(existObj._id))
             return {error: "Invalid ID"};
         updatedObj.updated_at = new Date().toISOString();
-        await this.lecturesModel.findOneAndUpdate(existObj, {$set: updatedObj}, {new: true}).then((updated_record)=>{
+        await this.staticlecturesModel.findOneAndUpdate(existObj, {$set: updatedObj}, {new: true}).then((updated_record)=>{
             if(!updated_record) response.error = "Record not found";
             else response = updated_record;
         }).catch(err=>{
@@ -51,7 +51,7 @@ class StaticLecture {
     {
         let response = {};
         if (this.mongoose.Types.ObjectId.isValid(obj._id))
-            await this.lecturesModel.findOneAndDelete(obj).then((deleted_record)=>{
+            await this.staticlecturesModel.findOneAndDelete(obj).then((deleted_record)=>{
                 if(!deleted_record) response.error = "Record not found";
                 else response.message = deleted_record;
             }).catch(err=>{

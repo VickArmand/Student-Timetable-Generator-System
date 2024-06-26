@@ -2,6 +2,7 @@ const { unitCourse } = require('../Models/unit_has_course');
 const staticlecture = require('../Models/staticlectures').staticlecture;
 const venue = require('../Models/venues').venue;
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const regex = new RegExp(/^([01]\d|2[0-3]):?([0-5]\d)$/);
 
 class StaticLecturesController{
     async create(req, res)
@@ -12,7 +13,7 @@ class StaticLecturesController{
         const startTime = req.body.startTime;
         const endTime = req.body.endTime;
 
-        if (!((startTime instanceof Date) && (endTime instanceof Date)))
+        if (!startTime || !endTime || !regex.test(startTime) || !regex.test(endTime))
             return res.status(400).json({ error: 'Invalid timestamps' });
         else if(!unitCourseID)
             return res.status(400).json({ error: 'Invalid unitCourse' });
@@ -20,6 +21,16 @@ class StaticLecturesController{
             return res.status(400).json({ error: 'Invalid venue' });
         else if(!day || !DAYS.includes(day))
             return res.status(400).json({ error: 'Invalid Day' });
+        const startsplit = start.split(":");
+        const endsplit = end.split(":");
+        const startDateTime = new Date()
+        startDateTime.setHours(startsplit[0])
+        startDateTime.setMinutes(startsplit[1])
+        const endDateTime = new Date();
+        endDateTime.setHours(endsplit[0])
+        endDateTime.setMinutes(endsplit[1])
+        if (startDateTime > endDateTime)
+            return res.status(400).json({ error: 'Invalid timestamps' });
         const unitCourseResult = await unitCourse.find({_id: unitCourseID});
         if (unitCourseResult.error)
             return res.status(400).json({error: 'unitCourse not available' });
@@ -46,12 +57,22 @@ class StaticLecturesController{
             return res.status(400).json({ error: 'Id required' });
         if (Object.keys(updatedObj).length < 1)
             return res.status(400).json({ error: 'Empty objects not allowed' });
-        if (!((startTime instanceof Date) && (endTime instanceof Date)))
+        if (!startTime || !endTime || !regex.test(startTime) || !regex.test(endTime))
+            return res.status(400).json({ error: 'Invalid timestamps' });
+        const startsplit = start.split(":");
+        const endsplit = end.split(":");
+        const startDateTime = new Date()
+        startDateTime.setHours(startsplit[0])
+        startDateTime.setMinutes(startsplit[1])
+        const endDateTime = new Date();
+        endDateTime.setHours(endsplit[0])
+        endDateTime.setMinutes(endsplit[1])
+        if (startDateTime > endDateTime)
             return res.status(400).json({ error: 'Invalid timestamps' });
         const venueResult = await venue.find({_id: venueID});
         if (venueID && venueResult.error)
             return res.status(400).json({error: 'Venue not available' });
-        if(!day || !DAYS.includes(day))
+        if (!day || !DAYS.includes(day))
             return res.status(400).json({ error: 'Invalid Day' });
         const unitCourseResult = await unitCourse.find({_id: unitCourseID});
         if (unitCourseID && unitCourseResult.error)
