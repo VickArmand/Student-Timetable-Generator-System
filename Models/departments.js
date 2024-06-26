@@ -36,7 +36,7 @@ class Department {
         if (!this.mongoose.Types.ObjectId.isValid(existObj._id))
             return {error: "Invalid ID"};
         updatedObj.updated_at = new Date().toISOString();
-        await this.departmentModel.findOneAndUpdate(existObj, updatedObj, {new: true}).then((updated_record)=>{
+        await this.departmentModel.findOneAndUpdate(existObj, {$set: updatedObj}, {new: true}).then((updated_record)=>{
             if(!updated_record) response.error = "Record not found";
             else response = updated_record;
         }).catch(err=>{

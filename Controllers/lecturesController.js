@@ -1,4 +1,9 @@
 const lecture = require('../Models/lectures').lecture;
+const course = require('../Models/courses').course;
+const school = require('../Models/schools').school;
+const department = require('../Models/departments').department;
+const venue = require('../Models/venues').venue;
+const lecturer = require('../Models/lecturers').lecturer;
 
 class LecturesController{
     async create(req, res)
@@ -14,21 +19,31 @@ class LecturesController{
         if (!((startTime instanceof Date) && (endTime instanceof Date))){
             return res.status(400).json({ error: 'Invalid timestamps' });
         }
-        else if(!lecturerID || lecturerID.length < 4){
+        else if(!lecturerID)
             return res.status(400).json({ error: 'Invalid Lecturer' });
-        }
-        else if (!courseID || courseID.length < 2) {
+        else if (!courseID)
             return res.status(400).json({ error: 'Invalid Course' });
-        }
-        else if (!departmentID || departmentID.length < 2) {
+        else if (!departmentID)
             return res.status(400).json({ error: 'Invalid Department' });
-        }
-        else if (!schoolID || schoolID.length < 2) {
+        else if (!schoolID)
             return res.status(400).json({ error: 'Invalid School' });
-        }
-        else if (!venueID || venueID.length < 2) {
+        else if (!venueID)
             return res.status(400).json({ error: 'Invalid Venue' });
-        }
+        const schoolResult = await school.find({_id: schoolID});
+        if (schoolResult.error)
+            return res.status(400).json({error: 'School not available' });
+        const departmentResult = await department.find({_id: departmentID});
+        if (departmentResult.error)
+            return res.status(400).json({error: 'Department not available' });
+        const lecturerResult = await lecturer.find({_id: lecturerID});
+        if (lecturerResult.error)
+            return res.status(400).json({error: 'Lecturer not available' });
+        const courseResult = await course.find({_id: courseID});
+        if (courseResult.error)
+            return res.status(400).json({error: 'Course not available' });
+        const venueResult = await venue.find({_id: venueID});
+        if (venueResult.error)
+            return res.status(400).json({error: 'Venue not available' });
         return res.status(201).json(await lecture.create({
             schoolID, departmentID, 
             venueID, courseID, lecturerID,
@@ -38,10 +53,34 @@ class LecturesController{
     {
         const _id = req.params.id;
         const updatedObj = req.body;
+        const schoolID = updatedObj.schoolID;
+        const lecturerID = updatedObj.lecturerID;
+        const departmentID = updatedObj.departmentID;
+        const courseID = updatedObj.courseID;
+        const venueID = updatedObj.venueID;
+        const startTime = updatedObj.startTime;
+        const endTime = updatedObj.endTime;
         if (!_id)
             return res.status(400).json({ error: 'Id required' });
         if (Object.keys(updatedObj).length < 1)
             return res.status(400).json({ error: 'Empty objects not allowed' });
+        if (!((startTime instanceof Date) && (endTime instanceof Date)))
+            return res.status(400).json({ error: 'Invalid timestamps' });
+        const schoolResult = await school.find({_id: schoolID});
+        if (schoolID && schoolResult.error)
+            return res.status(400).json({error: 'School not available' });
+        const departmentResult = await department.find({_id: departmentID});
+        if (departmentID && departmentResult.error)
+            return res.status(400).json({error: 'Department not available' });
+        const lecturerResult = await lecturer.find({_id: lecturerID});
+        if (lecturerID && lecturerResult.error)
+            return res.status(400).json({error: 'Lecturer not available' });
+        const courseResult = await course.find({_id: courseID});
+        if (courseID && courseResult.error)
+            return res.status(400).json({error: 'Course not available' });
+        const venueResult = await venue.find({_id: venueID});
+        if (venueID && venueResult.error)
+            return res.status(400).json({error: 'Venue not available' });
         const result = await lecture.update({_id}, updatedObj);
         if (result.error)
             return res.status(400).json(result);
