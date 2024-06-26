@@ -35,14 +35,14 @@ class CoursesController{
             return res.status(400).json({ error: 'Id required' });
         if (Object.keys(updatedObj).length < 1)
             return res.status(400).json({ error: 'Empty objects not allowed' });
-        const result = await venue.update({_id}, updatedObj);
+        const result = await school.update({_id}, updatedObj);
         if (result.error)
             return res.status(400).json(result);
         return res.status(200).json(result);
     }
     async find(req, res)
     {
-        const result = await venue.find(req.query);
+        const result = await school.find(req.query);
         if (result.error)
             return res.status(400).json(result);
         return res.status(200).json(result);
@@ -52,7 +52,7 @@ class CoursesController{
         const id = req.params.id;
         if (!id)
             return res.status(400).json({error: 'Id required'});
-        const result = await venue.delete({_id: id});
+        const result = await school.delete({_id: id});
         if (result.error)
             return res.status(400).json(result);
         return res.status(200).json(result);
