@@ -12,24 +12,24 @@ class LecturesController{
         const endTime = req.body.endTime;
 
         if (!((startTime instanceof Date) && (endTime instanceof Date))){
-            return res.status(400).end({ error: 'Invalid timestamps' });
+            return res.status(400).json({ error: 'Invalid timestamps' });
         }
         else if(typeof(lecturerID) !== 'string' || lecturerID.length < 4){
-            return res.status(400).end({ error: 'Invalid Lecturer' });
+            return res.status(400).json({ error: 'Invalid Lecturer' });
         }
         else if (typeof(courseID) != 'string' || courseID.length < 2) {
-            return res.status(400).end({ error: 'Invalid Course' });
+            return res.status(400).json({ error: 'Invalid Course' });
         }
         else if (typeof(departmentID) != 'string' || departmentID.length < 2) {
-            return res.status(400).end({ error: 'Invalid Department' });
+            return res.status(400).json({ error: 'Invalid Department' });
         }
         else if (typeof(schoolID) != 'string' || schoolID.length < 2) {
-            return res.status(400).end({ error: 'Invalid School' });
+            return res.status(400).json({ error: 'Invalid School' });
         }
         else if (typeof(venueID) != 'string' || venueID.length < 2) {
-            return res.status(400).end({ error: 'Invalid Venue' });
+            return res.status(400).json({ error: 'Invalid Venue' });
         }
-        return res.status(201).end(lecture.create({
+        return res.status(201).json(lecture.create({
             schoolID, departmentID, 
             venueID, courseID, lecturerID,
             startTime, endTime}));

@@ -7,12 +7,12 @@ class LecturerDepartmentsController{
         const departmentID = req.body.departmentID;
 
         if (typeof(departmentID) != 'string' || departmentID.length < 2) {
-            return res.status(400).end({ error: 'Invalid Department' });
+            return res.status(400).json({ error: 'Invalid Department' });
         }
         else if (typeof(lecturerID) != 'string' || lecturerID.length < 2) {
-            return res.status(400).end({ error: 'Invalid Lecturer' });
+            return res.status(400).json({ error: 'Invalid Lecturer' });
         }
-        return res.status(201).end(lecturerdepartments.create({departmentID, lecturerID}));
+        return res.status(201).json(lecturerdepartments.create({departmentID, lecturerID}));
     }
     update(existObj, updatedObj)
     {

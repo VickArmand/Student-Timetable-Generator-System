@@ -6,12 +6,12 @@ class DepartmentsController{
         const departmentName = req.body.departmentName;
         const schoolID = req.body.schoolID;
         if (typeof(departmentName) != 'string' || departmentName.length < 2) {
-            return res.status(400).end({ error: 'Invalid Department' });
+            return res.status(400).json({ error: 'Invalid Department' });
         }
         else if (typeof(schoolID) != 'string' || schoolID.length < 2) {
-            return res.status(400).end({ error: 'Invalid School' });
+            return res.status(400).json({ error: 'Invalid School' });
         }
-        return res.status(201).end(department.create({schoolID, departmentName}));
+        return res.status(201).json(department.create({schoolID, departmentName}));
     }
     update(existObj, updatedObj)
     {

@@ -6,9 +6,9 @@ class SchoolsController{
         const schoolName = req.body.schoolName;
 
         if (typeof(schoolName) != 'string' || schoolName.length < 2) {
-            return res.status(400).end({ error: 'Invalid Name' });
+            return res.status(400).json({ error: 'Invalid Name' });
         }
-        return res.status(201).end(school.create({schoolName}));
+        return res.status(201).json(school.create({schoolName}));
     }
     update(existObj, updatedObj)
     {

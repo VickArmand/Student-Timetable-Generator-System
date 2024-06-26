@@ -1,29 +1,47 @@
 const venue = require('../Models/venues').venue;
 
 class VenuesController{
-    create(req, res)
+    async create(req, res)
     {
         const venueName = req.body.venueName;
 
-        if (typeof(venueName) != 'string' || venueName.length < 2) {
-            return res.status(400).end({ error: 'Invalid Venue' });
+        if (!venueName) {
+            return res.status(400).json({ error: 'Invalid Venue' });
         }
-        return res.status(201).end(venue.create({venueName}));
+        const result = await venue.create({venueName});
+        if (result.error)
+            return res.status(400).json(result);
+        return res.status(201).json(result);
     }
-    update(existObj, updatedObj)
+    async update(req, res)
     {
-        if (updatedObj.length < 1) {
-            return { error: 'Empty objects not allowed' };
-        }
-        return venue.update(existObj, updatedObj);
+        const _id = req.params.id;
+        const updatedObj = req.body;
+        if (!_id)
+            return res.status(400).json({ error: 'Id required' });
+        if (Object.keys(updatedObj).length < 1)
+            return res.status(400).json({ error: 'Empty objects not allowed' });
+        const result = await venue.update({_id}, updatedObj);
+        if (result.error)
+            return res.status(400).json(result);
+        return res.status(200).json(result);
     }
-    find(obj)
+    async find(req, res)
     {
-        return venue.find(obj);
+        const result = await venue.find(req.query);
+        if (result.error)
+            return res.status(400).json(result);
+        return res.status(200).json(result);
     }
-    delete(obj)
+    async delete(req, res)
     {
-        return venue.delete(obj);
+        const id = req.params.id;
+        if (!id)
+            return res.status(400).json({error: 'Id required'});
+        const result = await venue.delete({_id: id});
+        if (result.error)
+            return res.status(400).json(result);
+        return res.status(200).json(result);
     }
 }
 exports.venueController = new VenuesController()

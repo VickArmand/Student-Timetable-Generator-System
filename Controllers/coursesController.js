@@ -10,21 +10,21 @@ class CoursesController{
         const courseName = req.body.courseName;
 
         if (typeof(years) !== 'number' || years < 1){
-            return res.status(400).end({ error: 'Invalid years' });
+            return res.status(400).json({ error: 'Invalid years' });
         }
         else if(typeof(semesters) !== 'number' || semesters < 1){
-            return res.status(400).end({error: 'Invalid semesters' });
+            return res.status(400).json({error: 'Invalid semesters' });
         }
         else if (typeof(courseName) != 'string' || courseName.length < 2) {
-            return res.status(400).end({error: 'Invalid Course' });
+            return res.status(400).json({error: 'Invalid Course' });
         }
         else if (typeof(departmentID) != 'string' || departmentID.length < 2) {
-            return res.status(400).end({error: 'Invalid Department' });
+            return res.status(400).json({error: 'Invalid Department' });
         }
         else if (typeof(schoolID) != 'string' || schoolID.length < 2) {
-            return res.status(400).end({error: 'Invalid School' });
+            return res.status(400).json({error: 'Invalid School' });
         }
-        return res.status(201).end(course.create({schoolID, courseName, departmentID, years, semesters}));
+        return res.status(201).json(course.create({schoolID, courseName, departmentID, years, semesters}));
     }
     update(existObj, updatedObj)
     {

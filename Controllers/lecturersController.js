@@ -6,12 +6,12 @@ class LecturersController{
         const firstName = req.body.firstName;
         const lastName = req.body.lastName;
         if (typeof(firstName) != 'string' || firstName.length < 4) {
-            return res.status(400).end({ error: 'Invalid FirstName' });
+            return res.status(400).json({ error: 'Invalid FirstName' });
         }
         else if (typeof(lastName) != 'string' || lastName.length < 4) {
-            return res.status(400).end({ error: 'Invalid LastName' });
+            return res.status(400).json({ error: 'Invalid LastName' });
         }
-        return res.status(201).end(lecturer.create({firstName, lastName}));
+        return res.status(201).json(lecturer.create({firstName, lastName}));
     }
     update(existObj, updatedObj)
     {
