@@ -1,16 +1,20 @@
 const unitCourse = require('../Models/unit_has_course.js').unitCourse;
-const lecturer = require('../Models/lecturers').lecturer;
-const department = require('../Models/departments').department;
-const course = require('../Models/courses').course;
-const school = require('../Models/schools').school;
+const lecturer = require('../Models/lecturers.js').lecturer;
+const department = require('../Models/departments.js').department;
+const course = require('../Models/courses.js').course;
+const unit = require('../Models/units.js').unit;
+const school = require('../Models/schools.js').school;
 
 class UnitCoursesController{
     async create(req, res)
     {
+        const unitID = req.body.unitID;
         const schoolID = req.body.schoolID;
         const lecturerID = req.body.lecturerID;
         const departmentID = req.body.departmentID;
         const courseID = req.body.courseID;
+        const year = Number(req.body.year);
+        const semester = Number(req.body.semester);
 
         if(!lecturerID)
             return res.status(400).json({ error: 'Invalid Lecturer' });
@@ -20,6 +24,12 @@ class UnitCoursesController{
             return res.status(400).json({ error: 'Invalid Department' });
         else if (!schoolID)
             return res.status(400).json({ error: 'Invalid School' });
+        else if (!unitID)
+            return res.status(400).json({ error: 'Invalid Unit' });
+        else if (!year || typeof(year) !== 'number' || year < 1)
+            return res.status(400).json({ error: 'Invalid year' });
+        else if (!semester || typeof(semester) !== 'number' || semester < 1)
+            return res.status(400).json({ error: 'Invalid semester' });
         const schoolResult = await school.find({_id: schoolID});
         if (schoolResult.error)
             return res.status(400).json({error: 'School not available' });
@@ -32,6 +42,13 @@ class UnitCoursesController{
         const courseResult = await course.find({_id: courseID});
         if (courseResult.error)
             return res.status(400).json({error: 'Course not available' });
+        const unitResult = await unit.find({_id: unitID});
+        if (unitResult.error)
+            return res.status(400).json({error: 'Unit not available' });
+        else if (year > courseResult.years)
+            return res.status(400).json({ error: 'Invalid year' });
+        else if (semester > courseResult.semesters)
+            return res.status(400).json({ error: 'Invalid semester' });
         return res.status(201).json(await unitCourse.create({departmentID, lecturerID}));
     }
     async update(req, res)
@@ -42,10 +59,13 @@ class UnitCoursesController{
         const lecturerID = updatedObj.lecturerID;
         const departmentID = updatedObj.departmentID;
         const courseID = updatedObj.courseID;
+        const unitID = updatedObj.unitID;
+        const year = Number(updatedObj.year);
+        const semester = Number(updatedObj.semester);
 
         if (!_id)
             return res.status(400).json({ error: 'Id required' });
-        if (Object.keys(updatedObj).length < 1)
+        else if (Object.keys(updatedObj).length < 1)
             return res.status(400).json({ error: 'Empty objects not allowed' });
         const schoolResult = await school.find({_id: schoolID});
         if (schoolID && schoolResult.error)
@@ -59,6 +79,13 @@ class UnitCoursesController{
         const courseResult = await course.find({_id: courseID});
         if (courseID && courseResult.error)
             return res.status(400).json({error: 'Course not available' });
+        const unitResult = await unit.find({_id: unitID});
+        if (unitID && unitResult.error)
+            return res.status(400).json({error: 'Unit not available' });
+        else if (year && (typeof(year) !== 'number' || year < 1 || year > courseResult.years))
+            return res.status(400).json({ error: 'Invalid year' });
+        else if (semester && (typeof(semester) !== 'number' || semester < 1 || semester > courseResult.semesters))
+            return res.status(400).json({ error: 'Invalid semester' });
         const result = await unitCourse.update({_id}, updatedObj);
         if (result.error)
             return res.status(400).json(result);

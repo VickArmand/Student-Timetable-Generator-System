@@ -1,5 +1,5 @@
-class Lecture {
-    collectionName = 'lectures';
+class StaticLecture {
+    collectionName = 'staticlectures';
     mongoose = require('mongoose');
     constructor()
     {
@@ -7,6 +7,7 @@ class Lecture {
             startTime: {type: Date, required: true},
             endTime: {type: Date, required: true},
             unitCourseID: {type: String, required: true},
+            day: {type: String, required: true},
             venueID: {type: String, required: true},
             created_at: {type: Date, default: Date.now},
             updated_at: {type: Date, default: Date.now}
@@ -60,4 +61,4 @@ class Lecture {
         return response;
     }
 }
-exports.lecture = new Lecture();
+exports.staticlecture = new StaticLecture();

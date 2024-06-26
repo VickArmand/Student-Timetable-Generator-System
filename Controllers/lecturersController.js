@@ -11,16 +11,25 @@ class LecturersController{
         else if (!lastName || lastName.length < 4) {
             return res.status(400).json({ error: 'Invalid LastName' });
         }
+        const nameResult = await lecturer.find({firstName, lastName});
+        if (nameResult.error)
+            return res.status(400).json({ error: 'Lecturer available' });
         return res.status(201).json(await lecturer.create({firstName, lastName}));
     }
     async update(req, res)
     {
         const _id = req.params.id;
         const updatedObj = req.body;
+        const firstName = updatedObj.firstName;
+        const lastName = updatedObj.lastName;
+
         if (!_id)
             return res.status(400).json({ error: 'Id required' });
         if (Object.keys(updatedObj).length < 1)
             return res.status(400).json({ error: 'Empty objects not allowed' });
+        const nameResult = await lecturer.find({firstName, lastName});
+        if ((firstName && lastName) && nameResult.error)
+            return res.status(400).json({ error: 'Lecturer available' });
         const result = await lecturer.update({_id}, updatedObj);
         if (result.error)
             return res.status(400).json(result);

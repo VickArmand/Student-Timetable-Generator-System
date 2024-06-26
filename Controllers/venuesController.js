@@ -1,6 +1,6 @@
-const unitCourse = require('../Models/unit_has_course.js').unitCourse;
+const venue = require('../Models/unit_has_course.js').venue;
 
-class unitCoursesController{
+class venuesController{
     async create(req, res)
     {
         const venueName = req.body.venueName;
@@ -44,4 +44,4 @@ class unitCoursesController{
         return res.status(200).json(result);
     }
 }
-exports.unitCourseController = new unitCoursesController()
+exports.venueController = new venuesController()
