@@ -4,8 +4,8 @@ class Lecture {
     constructor()
     {
         this.schema = this.mongoose.Schema({
-            startDateTime: {type: Date, required: true},
-            endDateTime: {type: Date, required: true},
+            startDateTime: {type: String, required: true},
+            endDateTime: {type: String, required: true},
             unitCourseID: {type: String, required: true},
             venueID: {type: String, required: true},
             created_at: {type: Date, default: Date.now},

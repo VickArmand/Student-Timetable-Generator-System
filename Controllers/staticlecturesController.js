@@ -39,7 +39,7 @@ class StaticLecturesController{
             return res.status(400).json({error: 'Venue not available' });
         const validateEvent = await staticlecture.find({day, startTime, endTime, venue});
         const validateSession = await staticlecture.find({unitCourseID, day, startTime, endTime});
-        if (Object.keys(validateEvent).length > 0 || Object.keys(validateSession).length > 0)
+        if (!(validateEvent.error && validateSession.error))
             return res.status(400).json({error: 'Select a different time or venue to host your lecture' });
         return res.status(201).json(await staticlecture.create({unitCourseID, venueID, day, startTime, endTime}));
     }
@@ -79,7 +79,7 @@ class StaticLecturesController{
             return res.status(400).json({error: 'unitCourse not available' });
         const validateEvent = await staticlecture.find({day, startTime, endTime, venue});
         const validateSession = await staticlecture.find({unitCourseID, day, startTime, endTime});
-        if (Object.keys(validateEvent).length > 0 || Object.keys(validateSession).length > 0)
+        if (!(validateEvent.error && validateSession.error))
             return res.status(400).json({error: 'Select a different time or venue to host your lecture' });
         const result = await staticlecture.update({_id}, updatedObj);
         if (result.error)

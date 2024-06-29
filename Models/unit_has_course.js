@@ -9,6 +9,8 @@ class UnitCourses {
             departmentID: {type: String, required: true},
             courseID: {type: String, required: true},
             schoolID: {type: String, required: true},
+            year: {type: Number, required: true},
+            semester: {type: Number, required: true},
             created_at: {type: Date, default: Date.now},
             updated_at: {type: Date, default: Date.now}});
         this.unitCourseModel = this.mongoose.model(this.collectionName, this.schema);

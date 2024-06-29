@@ -11,9 +11,6 @@ class LecturersController{
         else if (!lastName || lastName.length < 4) {
             return res.status(400).json({ error: 'Invalid LastName' });
         }
-        const nameResult = await lecturer.find({firstName, lastName});
-        if (nameResult.error)
-            return res.status(400).json({ error: 'Lecturer available' });
         return res.status(201).json(await lecturer.create({firstName, lastName}));
     }
     async update(req, res)

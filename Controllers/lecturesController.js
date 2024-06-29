@@ -26,11 +26,11 @@ class LecturesController{
         const venueResult = await venue.find({_id: venueID});
         if (venueResult.error)
             return res.status(400).json({error: 'Venue not available' });
-        const validateEvent = await lecture.find({startDateTime, endDateTime, venue});
+        const validateEvent = await lecture.find({venueID, startDateTime, endDateTime});
         const validateSession = await lecture.find({unitCourseID, startDateTime, endDateTime});
-        if (Object.keys(validateEvent).length > 0 || Object.keys(validateSession).length > 0)
+        if (!(validateEvent.error && validateSession.error))
             return res.status(400).json({error: 'Select a different time or venue to host your lecture' });
-        return res.status(201).json(await lecture.create({unitCourseID, venueID, startDateTime, endDateTime}));
+        return res.status(201).json(await lecture.create({unitCourseID, venueID, startDateTime: startDateTime.toString(), endDateTime: endDateTime.toString()}));
     }
     async update(req, res)
     {
@@ -58,7 +58,7 @@ class LecturesController{
             return res.status(400).json({error: 'Venue not available' });
         const validateEvent = await lecture.find({startTime, endTime, venue});
         const validateSession = await lecture.find({unitCourseID, startTime, endTime});
-        if (Object.keys(validateEvent).length > 0 || Object.keys(validateSession).length > 0)
+        if (!(validateEvent.error && validateSession.error))
             return res.status(400).json({error: 'Select a different time or venue to host your lecture' });
         const result = await lecture.update({_id}, updatedObj);
         if (result.error)
@@ -67,7 +67,18 @@ class LecturesController{
     }
     async find(req, res)
     {
-        const result = await lecture.find(req.query);
+        let d = req.query.date;
+        let pattern;
+        const date = new Date()
+        if (!d) {
+            d = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+            pattern = `${new Date(d).toString().split(`${date.getFullYear()}`)[0]}${date.getFullYear()}`;
+        }
+        else{
+            const year = d.split('-')[0];
+            pattern = `${new Date(d).toString().split(`${year}`)[0]}${year}`;
+        }
+        const result = await lecture.find({startDateTime: {$regex: `^${pattern}`}});
         if (result.error)
             return res.status(400).json(result);
         return res.status(200).json(result);

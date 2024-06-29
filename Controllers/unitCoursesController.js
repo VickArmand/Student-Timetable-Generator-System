@@ -49,7 +49,7 @@ class UnitCoursesController{
             return res.status(400).json({ error: 'Invalid year' });
         else if (semester > courseResult.semesters)
             return res.status(400).json({ error: 'Invalid semester' });
-        return res.status(201).json(await unitCourse.create({departmentID, lecturerID}));
+        return res.status(201).json(await unitCourse.create({unitID, schoolID, departmentID, courseID, lecturerID, year, semester}));
     }
     async update(req, res)
     {
