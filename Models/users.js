@@ -1,4 +1,3 @@
-const passportLocalMongoose = require('passport-local-mongoose');
 const bcrypt = require('bcrypt');
 const token = require('./tokens');
 const jwt = require('jsonwebtoken');
@@ -15,7 +14,6 @@ class User {
             created_at: {type: Date, default: Date.now},
             updated_at: {type: Date, default: Date.now}
         });
-        this.schema.plugin(passportLocalMongoose);
         this.userModel = this.mongoose.model(this.collectionName, this.schema);
     }
     async register(obj) {

@@ -3,7 +3,7 @@ const router = require('./routes');
 const app = express();
 const baseModel = require('./Models/baseModel');
 const bodyParser = require('body-parser');
-const passport = require('./Models/passportauth');
+const passport = require('passport');
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));

@@ -8,7 +8,8 @@ module.exports = async function isAuthorizedMiddleWare(req, res, next) {
     const accesstoken = authHeader.split(" ")[1]
     const result = jwtverify(accesstoken);
     const response = await token.find({token: accesstoken});
-    if (result.error || response.error)
+    const record_id = Object.keys(response)[0];
+    if (result.error || response.error || (result.email !== response[record_id].email && result.id !== response[record_id].user_id))
         return res.status(401).json({error: "Unauthorized"});
     req.user = result;
     req.session = result;
