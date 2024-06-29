@@ -38,7 +38,8 @@ class User {
                 response.error = "Incorrect email or password";
             }
             const accessToken = jwt.sign({id: user._id, email: user.email}, process.env.SECRET, {expiresIn: "1d"});
-            response[user._id] = user;
+            response.id = user._id;
+            response.email = user.email;
             response.accessToken = accessToken;
             const decoded = jwt.verify(accessToken, process.env.SECRET);
             await token.create({
@@ -51,8 +52,7 @@ class User {
         }).catch((err) => {response.error = err.message});
         return response;
     }
-    async logout() {
-
+    async logout(obj) {
     }
     async update(existObj, updatedObj) {
         let response = {};

@@ -1,6 +1,7 @@
 const { user } = require("../Models/users");
 const emailRegex = new RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/);
 const bcrypt = require('bcrypt');
+const token = require('../Models/tokens');
 
 class UserController {
     async register(req, res) {
@@ -34,13 +35,22 @@ class UserController {
         else if (!password)
             return res.status(400).json({error: "Password required"});
         const loginResult = await user.login(req.body);
-        // passport.authenticate('local');
         if (loginResult.error)
             return res.status(401).json(loginResult);
         return res.status(201).json(loginResult);
     }
     async logout(req, res) {
-        user.logout();
+        const result = await token.delete({
+            user_id: req.user.id,
+            email: req.user.email,
+            token: req.sessionID
+        });
+        if (result.error)
+            return res.status(201).json({message: "Unauthorized"});
+        delete req.session;
+        delete req.user;
+        delete req.sessionID;
+        return res.status(201).json({message: "Logged out"});
     }
     async update(req, res) {
         const email = req.body.email;

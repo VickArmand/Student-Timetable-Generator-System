@@ -1,14 +1,3 @@
-// const session = require('express-session');
-// const baseModel = require('./baseModel');
-// const MongoDBSessionstore = require('connect-mongodb-session')(session);
-// const store = new MongoDBSessionstore({
-//     uri: baseModel.uri,
-//     databaseName: baseModel.dbName,
-//     collection: 'tokens',
-// });
-// store.on('error', function(err) {
-//     console.log(err);
-// })
 class Token{
     collectionName = 'tokens';
     mongoose = require('mongoose');
