@@ -4,13 +4,21 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-server": "sudo systemctl start mongod && nodemon server.js"
+    "start-server": "export SECRET=studentTimetableAuth && sudo systemctl start mongod && nodemon server.js"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "connect-mongodb-session": "^5.0.0",
     "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.3",
     "nodemon": "^3.1.4",
-    "passport": "^0.7.0"
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0"
   },
   "author": "vickarmand",
   "license": "ISC",
