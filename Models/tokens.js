@@ -4,7 +4,7 @@ class Token{
     constructor()
     {
         this.schema = this.mongoose.Schema({
-            token: {type: String, unique: true, required: true, maxlength: 500},
+            token: {type: String, unique: true, required: true},
             user_id: {type: String, unique: true, required: true, maxlength: 200},
             email: {type: String, unique: true, required: true, maxlength: 200},
             issued_at: {type: Number, required: true},

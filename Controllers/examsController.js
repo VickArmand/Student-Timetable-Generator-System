@@ -66,8 +66,37 @@ class ExamsController{
             return res.status(400).json(result);
         return res.status(200).json(result);
     }
-    async find(req, res)
+    async fetch(req, res)
     {
+        let d = req.body.date;
+        const courseID = req.body.courseID;
+        const year = Number(req.body.year);
+        const semester = Number(req.body.semester);
+        const datePattern = new RegExp(/^[0-4]{4}-(0[1-9]|[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/);
+        if (d && !datePattern.test(d)) {
+            return res.status(400).json({error: "Invalid Date"});
+        }
+        else if (!d) {
+            const date = new Date()
+            d = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+        }
+        const start = new Date(`${d}, 12:00 AM`);
+        const end = new Date(`${d}, 11:59 PM`);
+        if (courseID && year && semester) {
+            const unitCourseResult = await unitCourse.find({courseID, year, semester});
+            if (unitCourseResult.error)
+                return res.status(400).json({error: "Course Not Found"});
+            const unitCourse_id = Object.keys(unitCourseResult)[0]
+            const result = await exam.find({startDateTime: {$gt: start, $lt: end}, unitCourseID: unitCourse_id});
+            if (result.error)
+                return res.status(400).json(result)
+        }
+        const result = await exam.find({startDateTime: {$gt: start, $lt: end}});
+        if (result.error)
+            return res.status(400).json(result);
+        return res.status(200).json(result);
+    }
+    async find(req, res) {
         const result = await exam.find(req.query);
         if (result.error)
             return res.status(400).json(result);

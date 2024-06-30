@@ -30,7 +30,7 @@ class LecturesController{
         const validateSession = await lecture.find({unitCourseID, startDateTime, endDateTime});
         if (!(validateEvent.error && validateSession.error))
             return res.status(400).json({error: 'Select a different time or venue to host your lecture' });
-        return res.status(201).json(await lecture.create({unitCourseID, venueID, startDateTime: startDateTime.toString(), endDateTime: endDateTime.toString()}));
+        return res.status(201).json(await lecture.create({unitCourseID, venueID, startDateTime: startDateTime, endDateTime: endDateTime}));
     }
     async update(req, res)
     {
@@ -65,20 +65,38 @@ class LecturesController{
             return res.status(400).json(result);
         return res.status(200).json(result);
     }
-    async find(req, res)
+    async fetch(req, res)
     {
-        let d = req.query.date;
-        let pattern;
-        const date = new Date()
-        if (!d) {
+        let d = req.body.date;
+        const courseID = req.body.courseID;
+        const year = Number(req.body.year);
+        const semester = Number(req.body.semester);
+        const datePattern = new RegExp(/^[0-4]{4}-(0[1-9]|[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/);
+        if (d && !datePattern.test(d)) {
+            return res.status(400).json({error: "Invalid Date"});
+        }
+        else if (!d) {
+            const date = new Date()
             d = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-            pattern = `${new Date(d).toString().split(`${date.getFullYear()}`)[0]}${date.getFullYear()}`;
         }
-        else{
-            const year = d.split('-')[0];
-            pattern = `${new Date(d).toString().split(`${year}`)[0]}${year}`;
+        const start = new Date(`${d}, 12:00 AM`);
+        const end = new Date(`${d}, 11:59 PM`);
+        if (courseID && year && semester) {
+            const unitCourseResult = await unitCourse.find({courseID, year, semester});
+            if (unitCourseResult.error)
+                return res.status(400).json({error: "Course Not Found"});
+            const unitCourse_id = Object.keys(unitCourseResult)[0]
+            const result = await lecture.find({startDateTime: {$gt: start, $lt: end}, unitCourseID: unitCourse_id});
+            if (result.error)
+                return res.status(400).json(result)
         }
-        const result = await lecture.find({startDateTime: {$regex: `^${pattern}`}});
+        const result = await lecture.find({startDateTime: {$gt: start, $lt: end}});
+        if (result.error)
+            return res.status(400).json(result);
+        return res.status(200).json(result);
+    }
+    async find(req, res){
+        const result = await lecture.find(req.query);
         if (result.error)
             return res.status(400).json(result);
         return res.status(200).json(result);

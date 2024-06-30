@@ -40,6 +40,7 @@ class User {
             response.email = user.email;
             response.accessToken = accessToken;
             const decoded = jwt.verify(accessToken, process.env.SECRET);
+            await token.delete({user_id: user.id, email: user.email})
             await token.create({
                 user_id: user.id,
                 email: user.email,

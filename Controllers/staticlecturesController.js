@@ -23,12 +23,8 @@ class StaticLecturesController{
             return res.status(400).json({ error: 'Invalid Day' });
         const startsplit = start.split(":");
         const endsplit = end.split(":");
-        const startDateTime = new Date()
-        startDateTime.setHours(startsplit[0])
-        startDateTime.setMinutes(startsplit[1])
-        const endDateTime = new Date();
-        endDateTime.setHours(endsplit[0])
-        endDateTime.setMinutes(endsplit[1])
+        const startDateTime = new Date().setHours(startsplit[0], startsplit[1])
+        const endDateTime = new Date().setHours(endsplit[0], endsplit[1])
         if (startDateTime > endDateTime)
             return res.status(400).json({ error: 'Invalid timestamps' });
         const unitCourseResult = await unitCourse.find({_id: unitCourseID});
@@ -57,22 +53,20 @@ class StaticLecturesController{
             return res.status(400).json({ error: 'Id required' });
         if (Object.keys(updatedObj).length < 1)
             return res.status(400).json({ error: 'Empty objects not allowed' });
-        if (!startTime || !endTime || !regex.test(startTime) || !regex.test(endTime))
-            return res.status(400).json({ error: 'Invalid timestamps' });
-        const startsplit = start.split(":");
-        const endsplit = end.split(":");
-        const startDateTime = new Date()
-        startDateTime.setHours(startsplit[0])
-        startDateTime.setMinutes(startsplit[1])
-        const endDateTime = new Date();
-        endDateTime.setHours(endsplit[0])
-        endDateTime.setMinutes(endsplit[1])
-        if (startDateTime > endDateTime)
-            return res.status(400).json({ error: 'Invalid timestamps' });
+        if (startTime && endTime) {
+            if (!regex.test(startTime) || !regex.test(endTime))
+                return res.status(400).json({ error: 'Invalid timestamps' });
+            const startsplit = start.split(":");
+            const endsplit = end.split(":");
+            const startDateTime = new Date().setHours(startsplit[0], startsplit[1])
+            const endDateTime = new Date().setHours(endsplit[0], endsplit[1])
+            if (startDateTime > endDateTime)
+                return res.status(400).json({ error: 'Invalid timestamps' });
+        }
         const venueResult = await venue.find({_id: venueID});
         if (venueID && venueResult.error)
             return res.status(400).json({error: 'Venue not available' });
-        if (!day || !DAYS.includes(day))
+        if (day && !DAYS.includes(day))
             return res.status(400).json({ error: 'Invalid Day' });
         const unitCourseResult = await unitCourse.find({_id: unitCourseID});
         if (unitCourseID && unitCourseResult.error)
@@ -89,6 +83,26 @@ class StaticLecturesController{
     async find(req, res)
     {
         const result = await staticlecture.find(req.query);
+        if (result.error)
+            return res.status(400).json(result);
+        return res.status(200).json(result);
+    }
+    async fetch(req, res)
+    {
+        const courseID = req.body.courseID;
+        const year = Number(req.body.year);
+        const semester = Number(req.body.semester);        
+    
+        if (courseID && year && semester) {
+            const unitCourseResult = await unitCourse.find({courseID, year, semester});
+            if (unitCourseResult.error)
+                return res.status(400).json({error: "Course Not Found"});
+            const unitCourse_id = Object.keys(unitCourseResult)[0]
+            const result = await staticlecture.find({unitCourseID: unitCourse_id});
+            if (result.error)
+                return res.status(400).json(result)
+        }
+        const result = await staticlecture.find({startDateTime: {$gt: start, $lt: end}});
         if (result.error)
             return res.status(400).json(result);
         return res.status(200).json(result);

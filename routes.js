@@ -38,10 +38,14 @@ router.get('/lecturerdepartments', lecturerDepartmentController.find);
 router.get('/departments', departmentController.find);
 router.get('/lecturers', lecturerController.find);
 router.get('/lectures', lectureController.find);
+router.get('/lectures/fetch', lectureController.fetch);
 router.get('/units', unitController.find);
 router.get('/unitcourses', unitCourseController.find);
 router.get('/exams', examController.find);
+router.get('/exams/fetch', examController.fetch);
 router.get('/staticlectures', staticlectureController.find);
+router.get('/staticlectures/fetch', staticlectureController.fetch);
+
 
 router.put('/schools/edit/:id', schoolController.update);
 router.put('/venues/edit/:id', venueController.update);
