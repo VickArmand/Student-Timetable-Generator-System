@@ -21,8 +21,8 @@ class StaticLecturesController{
             return res.status(400).json({ error: 'Invalid venue' });
         else if(!day || !DAYS.includes(day))
             return res.status(400).json({ error: 'Invalid Day' });
-        const startsplit = start.split(":");
-        const endsplit = end.split(":");
+        const startsplit = startTime.split(":");
+        const endsplit = endTime.split(":");
         const startDateTime = new Date().setHours(startsplit[0], startsplit[1])
         const endDateTime = new Date().setHours(endsplit[0], endsplit[1])
         if (startDateTime > endDateTime)
@@ -56,8 +56,8 @@ class StaticLecturesController{
         if (startTime && endTime) {
             if (!regex.test(startTime) || !regex.test(endTime))
                 return res.status(400).json({ error: 'Invalid timestamps' });
-            const startsplit = start.split(":");
-            const endsplit = end.split(":");
+            const startsplit = startTime.split(":");
+            const endsplit = endTime.split(":");
             const startDateTime = new Date().setHours(startsplit[0], startsplit[1])
             const endDateTime = new Date().setHours(endsplit[0], endsplit[1])
             if (startDateTime > endDateTime)
