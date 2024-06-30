@@ -93,16 +93,17 @@ class StaticLecturesController{
         const year = Number(req.body.year);
         const semester = Number(req.body.semester);        
     
-        if (courseID && year && semester) {
-            const unitCourseResult = await unitCourse.find({courseID, year, semester});
-            if (unitCourseResult.error)
-                return res.status(400).json({error: "Course Not Found"});
-            const unitCourse_id = Object.keys(unitCourseResult)[0]
-            const result = await staticlecture.find({unitCourseID: unitCourse_id});
-            if (result.error)
-                return res.status(400).json(result)
-        }
-        const result = await staticlecture.find({startDateTime: {$gt: start, $lt: end}});
+        if (!courseID)
+            return res.status(400).json({error: "Invalid Course"});
+        if (!year)
+            return res.status(400).json({error: "Invalid Year"});
+        if (!semester)
+            return res.status(400).json({error: "Invalid Semester"});
+        const unitCourseResult = await unitCourse.find({courseID, year, semester});
+        if (unitCourseResult.error)
+            return res.status(400).json({error: "unitCourse Not Found"});
+        const unitCourse_id = Object.keys(unitCourseResult)[0]
+        const result = await staticlecture.find({unitCourseID: unitCourse_id});
         if (result.error)
             return res.status(400).json(result);
         return res.status(200).json(result);
