@@ -6,9 +6,7 @@ class UnitCourses {
         this.schema = this.mongoose.Schema({
             unitID: {type: String, required: true},
             lecturerID: {type: String, required: true},
-            departmentID: {type: String, required: true},
             courseID: {type: String, required: true},
-            schoolID: {type: String, required: true},
             year: {type: Number, required: true},
             semester: {type: Number, required: true},
             created_at: {type: Date, default: Date.now},
