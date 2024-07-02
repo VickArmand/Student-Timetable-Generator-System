@@ -84,7 +84,7 @@ class LecturesController{
         if (courseID && year && semester) {
             const unitCourseResult = await unitCourse.find({courseID, year, semester});
             if (unitCourseResult.error)
-                return res.status(400).json({error: "Course Not Found"});
+                return res.status(400).json({error: "unitCourse Not Found"});
             const unitCourse_id = Object.keys(unitCourseResult)[0]
             const result = await lecture.find({startDateTime: {$gt: start, $lt: end}, unitCourseID: unitCourse_id});
             if (result.error)
