@@ -12,6 +12,7 @@
 <ul>
 <li>Clone the repository </li>
 <li>You need to have MongoDB installed in your device. For better interaction also have MongoDB compass</li>
+<li>With MongoDB installed create a database <code>timetabledb</code> import the json files in <code>Exported_documents</code> directory to the database to form collections</li>
 <li>Run <code>npm install</code> while the current working directory is on the project in order to install the dependencies</li>
 <li>To start the server run <code>npm run start-server</code></li>
 <li>Since it is a backend API project it is recommended to use Postman app to test the routes to get server responses</li>
