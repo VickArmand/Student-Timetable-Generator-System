@@ -1,0 +1,294 @@
+[{
+  "_id": {
+    "$oid": "66804d312cad9c1a1031f406"
+  },
+  "firstName": "Joseph",
+  "lastName": "Ndegwa",
+  "created_at": {
+    "$date": "2024-06-29T18:06:41.941Z"
+  },
+  "updated_at": {
+    "$date": "2024-06-29T18:06:41.941Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66804d6e2cad9c1a1031f409"
+  },
+  "firstName": "Amos",
+  "lastName": "Chege",
+  "created_at": {
+    "$date": "2024-06-29T18:07:42.105Z"
+  },
+  "updated_at": {
+    "$date": "2024-06-29T18:07:42.105Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66804d7e2cad9c1a1031f40c"
+  },
+  "firstName": "Dismus",
+  "lastName": "Kitaria",
+  "created_at": {
+    "$date": "2024-06-29T18:07:58.851Z"
+  },
+  "updated_at": {
+    "$date": "2024-06-29T18:07:58.851Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66804d8d2cad9c1a1031f40f"
+  },
+  "firstName": "Mary",
+  "lastName": "Maingi",
+  "created_at": {
+    "$date": "2024-06-29T18:08:13.743Z"
+  },
+  "updated_at": {
+    "$date": "2024-06-29T18:08:13.743Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66804e222cad9c1a1031f412"
+  },
+  "firstName": "Peter",
+  "lastName": "Maina",
+  "created_at": {
+    "$date": "2024-06-29T18:10:42.740Z"
+  },
+  "updated_at": {
+    "$date": "2024-06-29T18:10:42.740Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66804e572cad9c1a1031f415"
+  },
+  "firstName": "Samuel",
+  "lastName": "Muchiri",
+  "created_at": {
+    "$date": "2024-06-29T18:11:35.540Z"
+  },
+  "updated_at": {
+    "$date": "2024-06-29T18:11:35.540Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6683751b7f2a75306fdac7ec"
+  },
+  "firstName": "Geoffrey",
+  "lastName": "Gichuhi",
+  "created_at": {
+    "$date": "2024-07-02T03:33:47.583Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:33:47.583Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6683755f7f2a75306fdac7ef"
+  },
+  "firstName": "Johnson",
+  "lastName": "Mwiti",
+  "created_at": {
+    "$date": "2024-07-02T03:34:55.314Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:34:55.314Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6683756f7f2a75306fdac7f2"
+  },
+  "firstName": "Abkul",
+  "lastName": "Orto",
+  "created_at": {
+    "$date": "2024-07-02T03:35:11.542Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:35:11.543Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668376107f2a75306fdac7f5"
+  },
+  "firstName": "Stephen",
+  "lastName": "Mageto",
+  "created_at": {
+    "$date": "2024-07-02T03:37:52.771Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:37:52.771Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6683762d7f2a75306fdac7f8"
+  },
+  "firstName": "Kelvin",
+  "lastName": "Gogo",
+  "created_at": {
+    "$date": "2024-07-02T03:38:21.632Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:38:21.632Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668376587f2a75306fdac7fb"
+  },
+  "firstName": "George",
+  "lastName": "Kibaara",
+  "created_at": {
+    "$date": "2024-07-02T03:39:04.045Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:39:04.045Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668376757f2a75306fdac7fe"
+  },
+  "firstName": "Ambrose",
+  "lastName": "Irungu",
+  "created_at": {
+    "$date": "2024-07-02T03:39:33.806Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:39:33.806Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668376b07f2a75306fdac801"
+  },
+  "firstName": "Nicholas",
+  "lastName": "Irungu",
+  "created_at": {
+    "$date": "2024-07-02T03:40:32.205Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:40:32.205Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668376e47f2a75306fdac804"
+  },
+  "firstName": "Kennedy",
+  "lastName": "Munialo",
+  "created_at": {
+    "$date": "2024-07-02T03:41:24.704Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:41:24.704Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668376fe7f2a75306fdac807"
+  },
+  "firstName": "Mark",
+  "lastName": "Njuguna",
+  "created_at": {
+    "$date": "2024-07-02T03:41:50.209Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:41:50.209Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6683770c7f2a75306fdac80a"
+  },
+  "firstName": "Martin",
+  "lastName": "Mutua",
+  "created_at": {
+    "$date": "2024-07-02T03:42:04.519Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:42:04.519Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668377237f2a75306fdac80d"
+  },
+  "firstName": "Brian",
+  "lastName": "Wambura",
+  "created_at": {
+    "$date": "2024-07-02T03:42:27.921Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:42:27.921Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6683854d97b3617e5ab1d989"
+  },
+  "firstName": "Millicent",
+  "lastName": "Mwangi",
+  "created_at": {
+    "$date": "2024-07-02T04:42:53.400Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T04:42:53.400Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6683856697b3617e5ab1d98c"
+  },
+  "firstName": "Janet",
+  "lastName": "Kerubo",
+  "created_at": {
+    "$date": "2024-07-02T04:43:18.897Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T04:43:18.897Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6683857a97b3617e5ab1d98f"
+  },
+  "firstName": "Phyllis",
+  "lastName": "Waithira",
+  "created_at": {
+    "$date": "2024-07-02T04:43:38.210Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T04:43:38.210Z"
+  },
+  "__v": 0
+}]

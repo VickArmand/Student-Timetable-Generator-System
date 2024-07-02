@@ -1,0 +1,56 @@
+[{
+  "_id": {
+    "$oid": "667d1e69238e9f304f7feb55"
+  },
+  "departmentName": "Computer Science",
+  "schoolID": "667bb7d711b430833b2b6a92",
+  "created_at": {
+    "$date": "2024-06-27T08:10:17.774Z"
+  },
+  "updated_at": {
+    "$date": "2024-06-27T08:10:17.774Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668379e72a17b7d2fc8e63f0"
+  },
+  "departmentName": "Information Technology",
+  "schoolID": "667bb7d711b430833b2b6a92",
+  "created_at": {
+    "$date": "2024-07-02T03:54:15.183Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:54:15.183Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66837c312a17b7d2fc8e63f8"
+  },
+  "departmentName": "Computer Security and Forensics",
+  "schoolID": "667bb7d711b430833b2b6a92",
+  "created_at": {
+    "$date": "2024-07-02T04:04:01.578Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T04:04:01.578Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66837c8c2a17b7d2fc8e63fe"
+  },
+  "departmentName": "Business and Information Technology",
+  "schoolID": "668378311c23e15aee186ffd",
+  "created_at": {
+    "$date": "2024-07-02T04:05:32.099Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T04:05:32.099Z"
+  },
+  "__v": 0
+}]

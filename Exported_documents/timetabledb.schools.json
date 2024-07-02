@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "667bb7d711b430833b2b6a92"
+  },
+  "schoolName": "Computing and Informatics",
+  "created_at": {
+    "$date": "2024-06-26T06:40:23.648Z"
+  },
+  "updated_at": {
+    "$date": "2024-06-26T06:40:23.648Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668378311c23e15aee186ffd"
+  },
+  "schoolName": "Business",
+  "created_at": {
+    "$date": "2024-07-02T03:46:57.418Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:46:57.418Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6683783c1c23e15aee187000"
+  },
+  "schoolName": "Education",
+  "created_at": {
+    "$date": "2024-07-02T03:47:08.988Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:47:08.988Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668378721c23e15aee187003"
+  },
+  "schoolName": "Health Science",
+  "created_at": {
+    "$date": "2024-07-02T03:48:02.692Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:48:02.692Z"
+  },
+  "__v": 0
+}]

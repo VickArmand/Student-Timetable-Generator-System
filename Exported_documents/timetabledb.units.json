@@ -1,0 +1,806 @@
+[{
+  "_id": {
+    "$oid": "6683663b6c7ff713bfe65a0f"
+  },
+  "unitName": "Introduction to Computer Technology",
+  "created_at": {
+    "$date": "2024-07-02T02:30:19.039Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:30:19.039Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668366a16c7ff713bfe65a12"
+  },
+  "unitName": "Fundamentals of Computer Programming",
+  "created_at": {
+    "$date": "2024-07-02T02:32:01.716Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:32:01.716Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668366b16c7ff713bfe65a15"
+  },
+  "unitName": "Fundamentals of Internet",
+  "created_at": {
+    "$date": "2024-07-02T02:32:17.309Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:32:17.309Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668366c96c7ff713bfe65a18"
+  },
+  "unitName": "Mathematics for Science",
+  "created_at": {
+    "$date": "2024-07-02T02:32:41.852Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:32:41.852Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668366e56c7ff713bfe65a1b"
+  },
+  "unitName": "Discrete Mathematics",
+  "created_at": {
+    "$date": "2024-07-02T02:33:09.048Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:33:09.048Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668367366c7ff713bfe65a1e"
+  },
+  "unitName": "Communication Skills",
+  "created_at": {
+    "$date": "2024-07-02T02:34:30.702Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:34:30.702Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6683674a6c7ff713bfe65a21"
+  },
+  "unitName": "HIV/AIDS",
+  "created_at": {
+    "$date": "2024-07-02T02:34:50.040Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:34:50.040Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668367616c7ff713bfe65a24"
+  },
+  "unitName": "Computer Systems Architecture",
+  "created_at": {
+    "$date": "2024-07-02T02:35:13.347Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:35:13.348Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668367796c7ff713bfe65a27"
+  },
+  "unitName": "Data Communication and Networks",
+  "created_at": {
+    "$date": "2024-07-02T02:35:37.883Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:35:37.883Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668367966c7ff713bfe65a2a"
+  },
+  "unitName": "Object Oriented Programming I",
+  "created_at": {
+    "$date": "2024-07-02T02:36:06.886Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:36:06.886Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668367fb6c7ff713bfe65a2d"
+  },
+  "unitName": "System Analysis And Design",
+  "created_at": {
+    "$date": "2024-07-02T02:37:47.771Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:37:47.771Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6683681e6c7ff713bfe65a30"
+  },
+  "unitName": "Differential and Integral Calculus",
+  "created_at": {
+    "$date": "2024-07-02T02:38:22.766Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:38:22.766Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668368416c7ff713bfe65a33"
+  },
+  "unitName": "Discrete Structures",
+  "created_at": {
+    "$date": "2024-07-02T02:38:57.025Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:38:57.026Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668368536c7ff713bfe65a36"
+  },
+  "unitName": "General Physics",
+  "created_at": {
+    "$date": "2024-07-02T02:39:15.543Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:39:15.543Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668368786c7ff713bfe65a39"
+  },
+  "unitName": "Probability and Statistics",
+  "created_at": {
+    "$date": "2024-07-02T02:39:52.230Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:39:52.231Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668368986c7ff713bfe65a3c"
+  },
+  "unitName": "Data Structures and Algorithms",
+  "created_at": {
+    "$date": "2024-07-02T02:40:24.619Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:40:24.619Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668368a76c7ff713bfe65a3f"
+  },
+  "unitName": "Software Engineering",
+  "created_at": {
+    "$date": "2024-07-02T02:40:39.886Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:40:39.886Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668368da6c7ff713bfe65a42"
+  },
+  "unitName": "Operating Systems",
+  "created_at": {
+    "$date": "2024-07-02T02:41:30.137Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:41:30.137Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668368ed6c7ff713bfe65a45"
+  },
+  "unitName": "Database Systems",
+  "created_at": {
+    "$date": "2024-07-02T02:41:49.824Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:41:49.824Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668369206c7ff713bfe65a48"
+  },
+  "unitName": "Network Design and Implementation",
+  "created_at": {
+    "$date": "2024-07-02T02:42:40.084Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:42:40.084Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668369636c7ff713bfe65a4b"
+  },
+  "unitName": "Object Oriented Programming II",
+  "created_at": {
+    "$date": "2024-07-02T02:43:47.770Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:43:47.770Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668369746c7ff713bfe65a4e"
+  },
+  "unitName": "Object Oriented Analysis and Design",
+  "created_at": {
+    "$date": "2024-07-02T02:44:04.379Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:44:04.379Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668369946c7ff713bfe65a51"
+  },
+  "unitName": "Numerical Linear Algebra",
+  "created_at": {
+    "$date": "2024-07-02T02:44:36.558Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:44:36.558Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668369b46c7ff713bfe65a54"
+  },
+  "unitName": "Electronics",
+  "created_at": {
+    "$date": "2024-07-02T02:45:08.744Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:45:08.744Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836a706c7ff713bfe65a57"
+  },
+  "unitName": "Wireless and Mobile Computing",
+  "created_at": {
+    "$date": "2024-07-02T02:48:16.785Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:48:16.785Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836a986c7ff713bfe65a5a"
+  },
+  "unitName": "Assembly Language Programming",
+  "created_at": {
+    "$date": "2024-07-02T02:48:56.053Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:48:56.053Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836aaf6c7ff713bfe65a5d"
+  },
+  "unitName": "Application Programming",
+  "created_at": {
+    "$date": "2024-07-02T02:49:19.689Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:49:19.689Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836ac46c7ff713bfe65a60"
+  },
+  "unitName": "Automata Theory",
+  "created_at": {
+    "$date": "2024-07-02T02:49:40.870Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:49:40.870Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836b376c7ff713bfe65a63"
+  },
+  "unitName": "Network Administration and Management",
+  "created_at": {
+    "$date": "2024-07-02T02:51:35.802Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:51:35.802Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836b5b6c7ff713bfe65a66"
+  },
+  "unitName": "PC Maintenance and Networking Lab",
+  "created_at": {
+    "$date": "2024-07-02T02:52:11.604Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:52:11.604Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836b6d6c7ff713bfe65a69"
+  },
+  "unitName": "Digital Logic",
+  "created_at": {
+    "$date": "2024-07-02T02:52:29.292Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:52:29.292Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836b9d6c7ff713bfe65a6c"
+  },
+  "unitName": "Design and Analysis of Algorithms",
+  "created_at": {
+    "$date": "2024-07-02T02:53:17.337Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:53:17.338Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836bb66c7ff713bfe65a6f"
+  },
+  "unitName": "Systems Programming",
+  "created_at": {
+    "$date": "2024-07-02T02:53:42.044Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:53:42.044Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836bf56c7ff713bfe65a72"
+  },
+  "unitName": "ICT Project Management",
+  "created_at": {
+    "$date": "2024-07-02T02:54:45.272Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:54:45.273Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836c0e6c7ff713bfe65a75"
+  },
+  "unitName": "Human Computer Interation",
+  "created_at": {
+    "$date": "2024-07-02T02:55:10.552Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:55:10.552Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836c326c7ff713bfe65a78"
+  },
+  "unitName": "Internet Application Programming",
+  "created_at": {
+    "$date": "2024-07-02T02:55:46.306Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:55:46.306Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836c526c7ff713bfe65a7b"
+  },
+  "unitName": "Advanced Database Systems",
+  "created_at": {
+    "$date": "2024-07-02T02:56:18.302Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:56:18.302Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836c746c7ff713bfe65a7e"
+  },
+  "unitName": "Multimedia Systems and Applications",
+  "created_at": {
+    "$date": "2024-07-02T02:56:52.634Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:56:52.634Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836c8b6c7ff713bfe65a81"
+  },
+  "unitName": "Numerical Analysis",
+  "created_at": {
+    "$date": "2024-07-02T02:57:15.868Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:57:15.868Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836cad6c7ff713bfe65a84"
+  },
+  "unitName": "Artificial Intelligence",
+  "created_at": {
+    "$date": "2024-07-02T02:57:49.422Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:57:49.422Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836cc26c7ff713bfe65a87"
+  },
+  "unitName": "Distributed Systems",
+  "created_at": {
+    "$date": "2024-07-02T02:58:10.135Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:58:10.135Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836ced6c7ff713bfe65a8a"
+  },
+  "unitName": "Research Methodology and Group Project",
+  "created_at": {
+    "$date": "2024-07-02T02:58:53.557Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:58:53.557Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836d0f6c7ff713bfe65a8d"
+  },
+  "unitName": "Programming Languages",
+  "created_at": {
+    "$date": "2024-07-02T02:59:27.153Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:59:27.153Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836d216c7ff713bfe65a90"
+  },
+  "unitName": "Mobile Application Development",
+  "created_at": {
+    "$date": "2024-07-02T02:59:45.515Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T02:59:45.515Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836d396c7ff713bfe65a93"
+  },
+  "unitName": "Simulation and Modelling",
+  "created_at": {
+    "$date": "2024-07-02T03:00:09.043Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:00:09.043Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836d516c7ff713bfe65a96"
+  },
+  "unitName": "Operations Research",
+  "created_at": {
+    "$date": "2024-07-02T03:00:33.329Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:00:33.329Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836db46c7ff713bfe65a99"
+  },
+  "unitName": "Knowledge Based Systems",
+  "created_at": {
+    "$date": "2024-07-02T03:02:12.506Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:02:12.506Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836e246c7ff713bfe65a9c"
+  },
+  "unitName": "Embedded Systems",
+  "created_at": {
+    "$date": "2024-07-02T03:04:04.617Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:04:04.617Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836e826c7ff713bfe65aa2"
+  },
+  "unitName": "Computer Security and Cryptography",
+  "created_at": {
+    "$date": "2024-07-02T03:05:38.339Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:05:38.339Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836e966c7ff713bfe65aa5"
+  },
+  "unitName": "Computer Systems Project (Proposal Writing)",
+  "created_at": {
+    "$date": "2024-07-02T03:05:58.278Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:05:58.278Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836ea76c7ff713bfe65aa8"
+  },
+  "unitName": "Cloud Computing",
+  "created_at": {
+    "$date": "2024-07-02T03:06:15.364Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:06:15.364Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836eb96c7ff713bfe65aab"
+  },
+  "unitName": "Computer Graphics",
+  "created_at": {
+    "$date": "2024-07-02T03:06:33.478Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:06:33.478Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836ed56c7ff713bfe65aae"
+  },
+  "unitName": "Business Intelligence and Analytics",
+  "created_at": {
+    "$date": "2024-07-02T03:07:01.587Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:07:01.587Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836ee66c7ff713bfe65ab1"
+  },
+  "unitName": "Financial Accounting",
+  "created_at": {
+    "$date": "2024-07-02T03:07:18.490Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:07:18.490Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836ef86c7ff713bfe65ab4"
+  },
+  "unitName": "Compiler Construction",
+  "created_at": {
+    "$date": "2024-07-02T03:07:36.785Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:07:36.785Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836f1a6c7ff713bfe65ab7"
+  },
+  "unitName": "Emerging Technologies In Computer Science",
+  "created_at": {
+    "$date": "2024-07-02T03:08:10.713Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:08:10.713Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836f3c6c7ff713bfe65aba"
+  },
+  "unitName": "Neural Networks",
+  "created_at": {
+    "$date": "2024-07-02T03:08:44.562Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:08:44.562Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66836f566c7ff713bfe65abd"
+  },
+  "unitName": "Digital Image Processing",
+  "created_at": {
+    "$date": "2024-07-02T03:09:10.256Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:09:10.256Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668370146c7ff713bfe65ac0"
+  },
+  "unitName": "Computer Systems Project (Implementation)",
+  "created_at": {
+    "$date": "2024-07-02T03:12:20.648Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:12:20.648Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668370366c7ff713bfe65ac3"
+  },
+  "unitName": "Geographical Information Systems",
+  "created_at": {
+    "$date": "2024-07-02T03:12:54.230Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:12:54.230Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668370526c7ff713bfe65ac6"
+  },
+  "unitName": "Professional and Ethical Issues in Computing",
+  "created_at": {
+    "$date": "2024-07-02T03:13:22.819Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:13:22.819Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668370696c7ff713bfe65ac9"
+  },
+  "unitName": "Entrepreneurship",
+  "created_at": {
+    "$date": "2024-07-02T03:13:45.158Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-02T03:13:45.158Z"
+  },
+  "__v": 0
+}]
