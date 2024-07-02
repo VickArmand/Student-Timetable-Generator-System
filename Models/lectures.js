@@ -1,3 +1,9 @@
+const unitCourse = require('./unit_has_course.js').unitCourse;
+const lecturer = require('../Models/lecturers').lecturer;
+const venue = require('./venues.js').venue;
+const course = require('./courses.js').course;
+const unit = require('./units').unit;
+
 class Lecture {
     collectionName = 'lectures';
     mongoose = require('mongoose');
@@ -24,6 +30,33 @@ class Lecture {
         });
         return response;
     }
+    async detailed_records(record) {
+        const nr = {}
+        const unitCourseResult = await unitCourse.find({_id: record.unitCourseID});
+        const venueResult = await venue.find({_id: record.venueID});
+        if (unitCourseResult.error) {
+            nr.unitName = unitCourseResult.error;
+            nr.courseName = unitCourseResult.error;
+            nr.lecturerName = unitCourseResult.error;
+        }
+        else{
+            const courseResult = await course.find({_id: unitCourseResult[record.unitCourseID].courseID});
+            nr.courseName = courseResult.error ? courseResult.error : courseResult[unitCourseResult[record.unitCourseID].courseID].courseName;
+            const lecturerResult = await lecturer.find({_id: unitCourseResult[record.unitCourseID].lecturerID});
+            nr.lecturerName = lecturerResult.error ? lecturerResult.error : lecturerResult[unitCourseResult[record.unitCourseID].lecturerID].firstName + ' ' + lecturerResult[unitCourseResult[record.unitCourseID].lecturerID].lastName;
+            const unitResult = await unit.find({_id: unitCourseResult[record.unitCourseID].unitID});
+            nr.unitName = unitResult.error ? unitResult.error : unitResult[unitCourseResult[record.unitCourseID].unitID].unitName;
+        }
+        record.venueName = venueResult.error ? venueResult.error: venueResult[record.venueID].venueName;
+        nr.startDateTime = record.startDateTime;
+        nr.endDateTime = record.endDateTime;
+        nr.unitCourseID = record.unitCourseID;
+        nr.venueID = record.venueID;
+        nr._id = record._id;
+        nr.created_at = record.created_at;
+        nr.updated_at = record.updated_at;
+        return nr;
+    }
     async find(obj)
     {
         let response = {};
@@ -35,6 +68,12 @@ class Lecture {
             else
                 records.forEach((record) => response[record.id] = record);
         }).catch((err) => response.error = err.message);
+        if (!response.error){
+            for (const [key, value] of Object.entries(response)){
+                const record = await this.detailed_records(value);
+                response[key] = record;
+            }
+        }
         return response;
     }
     async update(existObj, updatedObj)
@@ -63,6 +102,6 @@ class Lecture {
             });
         else response.error = "Invalid ID"
         return response;
-    }
+    } 
 }
 exports.lecture = new Lecture();
