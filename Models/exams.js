@@ -1,3 +1,9 @@
+const unitCourse = require('./unit_has_course.js').unitCourse;
+const lecturer = require('../Models/lecturers').lecturer;
+const venue = require('./venues.js').venue;
+const course = require('./courses.js').course;
+const unit = require('./units').unit;
+
 class Exam {
     collectionName = 'exams';
     mongoose = require('mongoose');
