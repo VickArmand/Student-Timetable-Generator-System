@@ -59,7 +59,7 @@ class ExamsController{
             return res.status(400).json({error: 'Venue not available' });
         const validateEvent = await exam.find({startDateTime, endDateTime, venue});
         const validateSession = await exam.find({unitCourseID, startDateTime, endDateTime});
-        if (Object.keys(validateEvent).length > 0 || Object.keys(validateSession).length > 0)
+        if (!(validateEvent.error && validateSession.error))
             return res.status(400).json({error: 'Select a different time or venue to host your exam' });
         const result = await exam.update({_id}, updatedObj);
         if (result.error)
