@@ -41,6 +41,8 @@ class StaticLecture {
             nr.lecturerName = unitCourseResult.error;
         }
         else{
+            nr.year = unitCourseResult[record.unitCourseID].year;
+            nr.semester = unitCourseResult[record.unitCourseID].semester;
             const courseResult = await course.find({_id: unitCourseResult[record.unitCourseID].courseID});
             nr.courseName = courseResult.error ? courseResult.error : courseResult[unitCourseResult[record.unitCourseID].courseID].courseName;
             const lecturerResult = await lecturer.find({_id: unitCourseResult[record.unitCourseID].lecturerID});

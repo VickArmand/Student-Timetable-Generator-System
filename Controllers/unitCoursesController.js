@@ -36,7 +36,8 @@ class UnitCoursesController{
         else if (semester > courseResult.semesters)
             return res.status(400).json({ error: 'Invalid semester' });
         const unitCourseresult = await unitCourse.find({unitID, courseID, lecturerID});
-        if (unitCourseresult.error)
+        const courseUnitResult = await unitCourse.find({unitID, courseID});
+        if (unitCourseresult.error && courseUnitResult.error)
             return res.status(201).json(await unitCourse.create({unitID, courseID, lecturerID, year, semester}));
         return res.status(201).json({error: "unitCourse exists"});
     }
