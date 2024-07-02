@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 class User {
     mongoose = require('mongoose');
-    collectionName = 'users';
+    collectionName = 'auth_users';
     constructor() {
         this.schema = this.mongoose.Schema({
             email: {type: String, required:true, unique: true, maxlength: 200},
