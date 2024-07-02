@@ -48,7 +48,7 @@ class StaticLecture {
             const unitResult = await unit.find({_id: unitCourseResult[record.unitCourseID].unitID});
             nr.unitName = unitResult.error ? unitResult.error : unitResult[unitCourseResult[record.unitCourseID].unitID].unitName;
         }
-        record.venueName = venueResult.error ? venueResult.error: venueResult[record.venueID].venueName;
+        nr.venueName = venueResult.error ? venueResult.error: venueResult[record.venueID].venueName;
         nr.startTime = record.startTime;
         nr.endTime = record.endTime;
         nr.day = record.day;

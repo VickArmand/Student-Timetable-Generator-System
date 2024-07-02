@@ -47,7 +47,7 @@ class Exam {
             const unitResult = await unit.find({_id: unitCourseResult[record.unitCourseID].unitID});
             nr.unitName = unitResult.error ? unitResult.error : unitResult[unitCourseResult[record.unitCourseID].unitID].unitName;
         }
-        record.venueName = venueResult.error ? venueResult.error: venueResult[record.venueID].venueName;
+        nr.venueName = venueResult.error ? venueResult.error: venueResult[record.venueID].venueName;
         nr.startDateTime = record.startDateTime;
         nr.endDateTime = record.endDateTime;
         nr.unitCourseID = record.unitCourseID;
